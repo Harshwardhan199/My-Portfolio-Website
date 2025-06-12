@@ -67,7 +67,9 @@ body {
     column-gap: 20px;
 }
 .project-card{
-    display: block;
+    display: flex;
+    flex-direction: column;
+    position: relative;
 
     background-color: #1e1e1e; 
     border-radius: 16px; 
@@ -77,6 +79,20 @@ body {
 .project-card:hover {
     box-shadow: 0 4px 20px rgba(255, 0, 0, 0.543);
     cursor: pointer;
+}
+.git-link{
+    position: absolute;
+    right: 5px;
+    top: 5px;
+
+    height: 35px;
+    width: 35px;
+}
+.git-link img{
+    height: 35px;
+    width: 35px;
+
+    border-radius: 50%;
 }
 .project-image {
     width: 100%; 
