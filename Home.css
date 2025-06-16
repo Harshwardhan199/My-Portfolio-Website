@@ -262,6 +262,13 @@ body {
     transition: 0.3s ease-in-out;
 }
 
+@media (max-width: 500px) {
+    .profile img {
+        width: 170px;
+        height: 170px;
+    }
+}
+
 .description {
     display: flex;
     flex-direction: column;
@@ -421,6 +428,11 @@ body {
     transition: transform 0.3s ease-in-out;
 }
 
+@media (max-width: 500px) {
+    .skill-card {
+        width: 180px;
+    }
+}
 .skill-card:hover {
     transform: scale(1.05);
     box-shadow: 0 4px 20px rgba(255, 0, 0, 0.2);
@@ -665,12 +677,14 @@ body {
     font-family: Verdana, Tahoma, sans-serif;
     color: whitesmoke
 }
-.contact-form-icons{
+
+.contact-form-icons {
     width: 18px;
     height: 16px;
 
     margin-right: 8px;
 }
+
 .ne-input {
     display: flex;
     gap: 20px;
