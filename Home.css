@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800;900&display=swap');
 
 * {
     box-sizing: border-box;
@@ -38,11 +38,18 @@ body {
     /* border-bottom: 1px solid white; */
 }
 
+@media (max-width: 400px) {
+
+    .navbar {
+        padding: 0 16px;
+    }
+}
+
 .myName {
     flex: 1;
 
     color: red;
-    font-size: clamp(24px, 3.5vw, 30px);
+    font-size: clamp(22px, 3.5vw, 30px);
     font-weight: 700;
     font-family: 'Poppins', sans-serif;
     text-shadow: 2px 2px 5px black;
@@ -249,6 +256,18 @@ body {
     gap: 100px;
 }
 
+@media (max-width : 900px) {
+    .about-container {
+        flex-direction: column;
+
+        height: 100%;
+
+        padding: 20px;
+
+        gap: 100px;
+    }
+}
+
 .profile img {
     margin-bottom: 20px;
     width: 250px;
@@ -262,10 +281,10 @@ body {
     transition: 0.3s ease-in-out;
 }
 
-@media (max-width: 500px) {
+@media (max-width: 650px) {
     .profile img {
-        width: 170px;
-        height: 170px;
+        width: clamp(170px, 40vw, 250px);
+        height: clamp(170px, 40vw, 250px);
     }
 }
 
@@ -284,17 +303,17 @@ body {
     color: #E0E0E0;
 }
 
-@media (max-width : 900px) {
-    .about-container {
+@media (max-width: 650px) {
+    .description {
+        display: flex;
         flex-direction: column;
-
-        height: 100%;
-
-        padding: 20px;
-
-        gap: 100px;
+        align-items: flex-start;
+        font-size: clamp(16px, 4vw, 18px);
+        padding: 10px;
+        text-align: left;
     }
 }
+
 
 /* Skills */
 .skills {
@@ -343,6 +362,12 @@ body {
 
     border-bottom: 2px solid #e50914;
     color: white;
+}
+
+@media (max-width: 500px) {
+    .category-name {
+        font-size: clamp(26px, 3vw, 30px);
+    }
 }
 
 .skills-row {
@@ -417,7 +442,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-
+    justify-content: center;
     width: 200px;
     height: 220px;
 
@@ -428,9 +453,10 @@ body {
     transition: transform 0.3s ease-in-out;
 }
 
-@media (max-width: 500px) {
+@media (min-width: 350px) {
     .skill-card {
-        width: 180px;
+        width: clamp(145px, 43vw, 200px);
+        height: 250px;
     }
 }
 
@@ -508,7 +534,7 @@ body {
 
     background-color: #1e1e1e;
     border-radius: 16px;
-    box-shadow: 0 4px 20px rgba(255, 0, 0, 0.37);
+    box-shadow: 0 4px 10px rgba(255, 0, 0, 0.37);
     transition: transform 0.3s ease-in-out, box-shadow 0.2s ease-in-out;
 
     opacity: 0;
@@ -632,11 +658,18 @@ body {
     padding: 30px;
     margin: 30px;
     max-width: 700px;
-    min-height: 550px;
+    min-height: 536px;
 
     border-radius: 20px;
-    box-shadow: 0 4px 20px rgba(255, 0, 0, 0.4);
+    box-shadow: 0 4px 10px rgba(255, 0, 0, 0.4);
     transition: transform 0.3s ease-in-out;
+}
+
+@media (max-width: 500px) {
+    .contact-container {
+        padding: clamp(16px, 6vw, 30px);
+        margin: clamp(16px, 6vw, 30px);
+    }
 }
 
 .contact-info {
@@ -665,11 +698,11 @@ body {
 
 @media (max-width: 500px) {
     .get-in-touch {
-        font-size: 14px;
+        font-size: clamp(14px, 3vw, 20px);
     }
 
     .phone-number {
-        font-size: 16px;
+        font-size: clamp(14px, 3vw, 20px);
     }
 }
 
@@ -723,6 +756,12 @@ body {
     margin-bottom: 5px;
 }
 
+@media (max-width: 500px) {
+    .input-group label {
+        font-size: clamp(16px, 3vw, 20px);
+    }
+}
+
 .input-group input,
 .input-group textarea {
     width: 100%;
@@ -743,6 +782,14 @@ body {
     /* Highlight border on focus */
     background: #333;
     /* Slightly lighter background for effect */
+}
+
+@media (max-width: 500px) {
+
+    .input-group input,
+    .input-group textarea {
+        font-size: clamp(16px, 3vw, 20px);
+    }
 }
 
 .input-group textarea {
