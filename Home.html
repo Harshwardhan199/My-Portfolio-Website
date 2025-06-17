@@ -95,7 +95,8 @@
             <div class="profile">
                 <img src="images/OIP.jpeg" alt="Me">
                 <div>
-                    <a href="https://www.linkedin.com/in/harshwardhan-saini-ab65a4279/"><button class="social-btn">LinkedIn</button></a>
+                    <a href="https://www.linkedin.com/in/harshwardhan-saini-ab65a4279/"><button
+                            class="social-btn">LinkedIn</button></a>
                     <a href="https://github.com/Harshwardhan199"><button class="social-btn">GitHub</button></a>
                 </div>
             </div>
@@ -470,8 +471,8 @@
         <div class="contact-container">
             <div class="contact-info">
                 <p class="get-in-touch">GET IN TOUCH</p>
-                <span class="phone-number"><img src="images/phone.png"
-                        alt="Phone Icon" style="width: 12px; height: 14px;  margin-right: 8px;">(+91) 7357980181</span>
+                <span class="phone-number"><img src="images/phone.png" alt="Phone Icon"
+                        style="width: 12px; height: 14px;  margin-right: 8px;">(+91) 7357980181</span>
             </div>
 
             <!-- <h2 class="contact-title">Contact</h2> -->
@@ -585,6 +586,38 @@
 
         cards.forEach(card => {
             observer.observe(card);
+        });
+    </script>
+
+    <script>
+        // Wrap h3 letters in spans
+        document.querySelectorAll('.skill-card h3').forEach(h3 => {
+            const text = h3.textContent;
+            h3.textContent = '';
+
+            text.split('').forEach((char, i) => {
+                const span = document.createElement('span');
+                span.textContent = char;
+                span.style.animationDelay = `${i * 0.1}s`;
+                h3.appendChild(span);
+            });
+        });
+
+        // New IntersectionObserver just for .skill-card h3
+        const h3Observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fall-in');
+                    h3Observer.unobserve(entry.target); // Only once
+                }
+            });
+        }, {
+            threshold: 0.5
+        });
+
+        // Observe each h3 in skill-card
+        document.querySelectorAll('.skill-card h3').forEach(h3 => {
+            h3Observer.observe(h3);
         });
     </script>
 </body>

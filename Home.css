@@ -474,6 +474,12 @@ body {
     transition: transform 0.3s ease-in-out;
 }
 
+.skill-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 20px rgba(255, 0, 0, 0.2);
+    cursor: pointer;
+}
+
 @media (min-width: 350px) {
     .skill-card {
         width: clamp(145px, 43vw, 200px);
@@ -481,10 +487,25 @@ body {
     }
 }
 
-.skill-card:hover {
-    transform: scale(1.05);
-    box-shadow: 0 4px 20px rgba(255, 0, 0, 0.2);
-    cursor: pointer;
+.skill-card h3 span {
+  position: relative;
+  display: inline-block;
+  opacity: 0;
+}
+
+.fall-in span {
+  animation: fallOneByOne 0.6s ease-out forwards;
+}
+
+@keyframes fallOneByOne {
+  0% {
+    top: -30px;
+    opacity: 0;
+  }
+  100% {
+    top: 0;
+    opacity: 1;
+  }
 }
 
 .skill-card img {
