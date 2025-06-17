@@ -35,7 +35,7 @@ body {
     font-size: 20px;
     background-color: #141414;
     z-index: 1000;
-    /* border-bottom: 1px solid white; */
+    border-bottom: 1px solid white;
 }
 
 @media (max-width: 400px) {
@@ -171,7 +171,7 @@ body {
     justify-content: center;
     width: 100vw;
     height: 90vh;
-    padding: 50px;
+    padding: 12px;
     max-width: 1400px;
 
     color: white;
@@ -181,12 +181,10 @@ body {
 
 .home-container h1 {
     font-size: clamp(36px, 3.5vw, 60px);
-    font-weight: 5000;
 }
 
 .home-container h2 {
     font-size: clamp(24px, 3.5vw, 40px);
-    font-weight: 500;
     text-shadow: 2px 2px 5px black;
 
     margin-bottom: 50px;
@@ -233,7 +231,7 @@ body {
     width: 100%;
     min-height: 90vh;
 
-    padding: 0px;
+    padding: 40px;
 
     color: aliceblue;
     font-family: 'Poppins', sans-serif;
@@ -257,6 +255,9 @@ body {
 }
 
 @media (max-width : 900px) {
+    .about{
+        padding: 0px;
+    }
     .about-container {
         flex-direction: column;
 
@@ -266,6 +267,7 @@ body {
 
         gap: 100px;
     }
+
 }
 
 .profile img {
@@ -287,7 +289,24 @@ body {
         height: clamp(170px, 40vw, 250px);
     }
 }
+.social-btn{
+    display: inline-block;
+    text-decoration: none;
 
+    padding: 10px 20px;
+    margin: 5px;
+
+    font-size: clamp(20px, 3.5vw, 30px);
+    font-weight: 600;
+
+    background-color: #030712;
+    color: white;
+
+    border: 2px solid rgb(169, 169, 169);
+    border-radius: 8px;
+
+    transition: 0.3s ease-in-out;
+}
 .description {
     display: flex;
     flex-direction: column;
@@ -299,17 +318,19 @@ body {
 
 .description p {
     max-width: 800px;
-
     color: #E0E0E0;
 }
-
+@media (max-width: 900px) {
+    .description {
+        padding: 0px;
+    }
+}
 @media (max-width: 650px) {
     .description {
         display: flex;
         flex-direction: column;
         align-items: flex-start;
         font-size: clamp(16px, 4vw, 18px);
-        padding: 10px;
         text-align: left;
     }
 }
@@ -656,9 +677,9 @@ body {
     background-color: #1e1e1e;
 
     padding: 30px;
-    margin: 30px;
+    margin: 20px 30px;
     max-width: 700px;
-    min-height: 536px;
+    min-height: 480px;
 
     border-radius: 20px;
     box-shadow: 0 4px 10px rgba(255, 0, 0, 0.4);
@@ -698,11 +719,11 @@ body {
 
 @media (max-width: 500px) {
     .get-in-touch {
-        font-size: clamp(14px, 3vw, 20px);
+        font-size: clamp(15px, 3vw, 20px);
     }
 
     .phone-number {
-        font-size: clamp(14px, 3vw, 20px);
+        font-size: clamp(15px, 3vw, 20px);
     }
 }
 
