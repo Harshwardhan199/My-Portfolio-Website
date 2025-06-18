@@ -69,7 +69,7 @@
                     </p>
                 </div>
             </a>
-            <a href="/myResume.pdf">
+            <a href="/Resume.pdf">
                 <div class="btn">
                     <p>Resume
                         <svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24"
@@ -532,6 +532,7 @@
     </div> -->
 
     <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+    
     <script>
         var typed = new Typed("#typed-text", {
             strings: ["I'm a Full Stack Developer", "I love building scalable apps", "I work with MERN Stack 🚀"],
@@ -562,6 +563,7 @@
             overlay.classList.remove("active");
         }
     </script>
+
     <script>
         const cards = document.querySelectorAll('.project-card');
 
@@ -569,19 +571,17 @@
             let delay = 0;
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    // Add visible class with delay using setTimeout
                     setTimeout(() => {
                         entry.target.classList.add('visible');
                     }, delay);
 
-                    delay += 500; // 200ms delay between each card
+                    delay += 500;
 
-                    // Stop observing so it only triggers once
                     observer.unobserve(entry.target);
                 }
             });
         }, {
-            threshold: 0.1, // trigger when 20% is in view
+            threshold: 0.1, 
         });
 
         cards.forEach(card => {
@@ -589,37 +589,51 @@
         });
     </script>
 
-    <script>
-        // Wrap h3 letters in spans
-        document.querySelectorAll('.skill-card h3').forEach(h3 => {
-            const text = h3.textContent;
-            h3.textContent = '';
+<script>
+    // Apply animation character-by-character, but group by word to prevent mid-word wrapping
+    document.querySelectorAll('.skill-card h3').forEach(h3 => {
+        const text = h3.textContent.trim();
+        h3.textContent = '';
 
-            text.split('').forEach((char, i) => {
-                const span = document.createElement('span');
-                span.textContent = char;
-                span.style.animationDelay = `${i * 0.1}s`;
-                h3.appendChild(span);
+        const words = text.split(' ');
+        let charIndex = 0; // Global character index for animation delay
+
+        words.forEach((word, wordIdx) => {
+            const wordSpan = document.createElement('span');
+            wordSpan.style.display = 'inline-block'; // Keep full word together
+            wordSpan.style.marginRight = '0.4ch'; // Add space between words
+
+            word.split('').forEach((char, i) => {
+                const charSpan = document.createElement('span');
+                charSpan.textContent = char;
+                charSpan.style.animationDelay = `${charIndex * 0.07}s`;
+                charSpan.style.display = 'inline-block';
+                charSpan.style.position = 'relative';
+                wordSpan.appendChild(charSpan);
+                charIndex++;
             });
-        });
 
-        // New IntersectionObserver just for .skill-card h3
-        const h3Observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('fall-in');
-                    h3Observer.unobserve(entry.target); // Only once
-                }
-            });
-        }, {
-            threshold: 0.5
+            h3.appendChild(wordSpan);
         });
+    });
 
-        // Observe each h3 in skill-card
-        document.querySelectorAll('.skill-card h3').forEach(h3 => {
-            h3Observer.observe(h3);
+    // Intersection observer for triggering animation
+    const h3Observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('fall-in');
+                h3Observer.unobserve(entry.target); 
+            }
         });
-    </script>
+    }, {
+        threshold: 0.5
+    });
+
+    document.querySelectorAll('.skill-card h3').forEach(h3 => {
+        h3Observer.observe(h3);
+    });
+</script>
+
 </body>
 
 </html>

@@ -255,9 +255,10 @@ body {
 }
 
 @media (max-width : 900px) {
-    .about{
+    .about {
         padding: 0px;
     }
+
     .about-container {
         flex-direction: column;
 
@@ -289,7 +290,8 @@ body {
         height: clamp(170px, 40vw, 250px);
     }
 }
-.social-btn{
+
+.social-btn {
     display: inline-block;
     text-decoration: none;
 
@@ -307,6 +309,7 @@ body {
 
     transition: 0.3s ease-in-out;
 }
+
 .description {
     display: flex;
     flex-direction: column;
@@ -320,11 +323,13 @@ body {
     max-width: 800px;
     color: #E0E0E0;
 }
+
 @media (max-width: 900px) {
     .description {
         padding: 0px;
     }
 }
+
 @media (max-width: 650px) {
     .description {
         display: flex;
@@ -464,6 +469,7 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+
     width: 200px;
     height: 220px;
 
@@ -471,6 +477,7 @@ body {
 
     background-color: #1e1e1e;
     border-radius: 10px;
+
     transition: transform 0.3s ease-in-out;
 }
 
@@ -487,27 +494,6 @@ body {
     }
 }
 
-.skill-card h3 span {
-  position: relative;
-  display: inline-block;
-  opacity: 0;
-}
-
-.fall-in span {
-  animation: fallOneByOne 0.6s ease-out forwards;
-}
-
-@keyframes fallOneByOne {
-  0% {
-    top: -30px;
-    opacity: 0;
-  }
-  100% {
-    top: 0;
-    opacity: 1;
-  }
-}
-
 .skill-card img {
     width: 40px;
     height: 40px;
@@ -522,6 +508,27 @@ body {
     margin-bottom: 20px;
 }
 
+.skill-card h3 span {
+    position: relative;
+    display: inline-block;
+    opacity: 0;
+}
+
+.fall-in span {
+    animation: fallOneByOne 0.6s ease-out forwards;
+}
+
+@keyframes fallOneByOne {
+    0% {
+        top: -30px;
+        opacity: 0;
+    }
+
+    100% {
+        top: 0;
+        opacity: 1;
+    }
+}
 
 .skill-card p {
     font-size: 16px;
