@@ -583,51 +583,6 @@
         });
     </script>
 
-<script>
-    // Apply animation character-by-character, but group by word to prevent mid-word wrapping
-    document.querySelectorAll('.skill-card h3').forEach(h3 => {
-        const text = h3.textContent.trim();
-        h3.textContent = '';
-
-        const words = text.split(' ');
-        let charIndex = 0; // Global character index for animation delay
-
-        words.forEach((word, wordIdx) => {
-            const wordSpan = document.createElement('span');
-            wordSpan.style.display = 'inline-block'; // Keep full word together
-            wordSpan.style.marginRight = '0.4ch'; // Add space between words
-
-            word.split('').forEach((char, i) => {
-                const charSpan = document.createElement('span');
-                charSpan.textContent = char;
-                charSpan.style.animationDelay = `${charIndex * 0.07}s`;
-                charSpan.style.display = 'inline-block';
-                charSpan.style.position = 'relative';
-                wordSpan.appendChild(charSpan);
-                charIndex++;
-            });
-
-            h3.appendChild(wordSpan);
-        });
-    });
-
-    // Intersection observer for triggering animation
-    const h3Observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('fall-in');
-                h3Observer.unobserve(entry.target); 
-            }
-        });
-    }, {
-        threshold: 0.5
-    });
-
-    document.querySelectorAll('.skill-card h3').forEach(h3 => {
-        h3Observer.observe(h3);
-    });
-</script>
-
 </body>
 
 </html>
