@@ -276,11 +276,7 @@ body {
     width: 250px;
     height: 250px;
     border-radius: 50%;
-    box-shadow:
-        0 0 10px #ff3333,
-        /* Brighter purple glow */
-        0 0 15px #ba0202;
-    /* Outer softer glow */
+    box-shadow: 0 0 5px #ff3333, 0 0 10px #ba0202;
     transition: 0.3s ease-in-out;
 }
 
