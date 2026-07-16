@@ -9,7 +9,7 @@ export const projectsData = [
     id: 1,
     title: "National Cyber Threat Intelligence Hub",
     description: "A centralized platform designed to monitor, aggregate, and analyze real-time cyber threats. Features ingestion of feed intelligence, indicators of compromise (IoC) visualization, and collaborative threat response frameworks.",
-    technologies: ["React", "Python", "FastAPI", "MongoDB", "Docker"],
+    technologies: ["React", "Node.js", "Django", "Kafka", "Kubernetes", "Docker"],
     github: "https://github.com/ktyangden/National-Cyber-Threat-Intelligence-Hub",
     demo: "",
     image: threatVistaImg
@@ -18,7 +18,7 @@ export const projectsData = [
     id: 2,
     title: "Sage AI",
     description: "This is a MERN stack chatbot platform project with some additional features like Chats history organized in folder, reusable prompts and interactive quizzes.",
-    technologies: ["React", "Node.js", "MongoDB", "LLM"],
+    technologies: ["React", "Node.js", "FastAPI", "Redis", "MongoDB", "LLM"],
     github: "https://github.com/Harshwardhan199/SageAI",
     demo: "https://sage-ai-chatbot.vercel.app/",
     image: sageAiImg
