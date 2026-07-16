@@ -1,0 +1,92 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+
+@import "tailwindcss";
+
+:root {
+  --color-bg-theme: #f9fafb;
+  --color-card-theme: #ffffff;
+  --color-text-primary: #1f2937;
+  --color-text-secondary: #4b5563;
+  --color-border-theme: rgba(0, 0, 0, 0.08);
+  --color-input-bg: #f3f4f6;
+  --color-input-focus-bg: #e2e8f0;
+  --color-navbar-bg: rgba(249, 250, 251, 0.9);
+  --color-navbar-border: rgba(0, 0, 0, 0.1);
+  --color-footer-bg: #f3f4f6;
+  --shadow-card: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03), 0 0 0 1px rgba(0, 0, 0, 0.05);
+  --shadow-card-hover: 0 10px 20px -3px rgba(229, 9, 20, 0.15), 0 4px 6px -4px rgba(229, 9, 20, 0.1), 0 0 0 1px rgba(229, 9, 20, 0.15);
+  --text-shadow-header: 2px 2px 4px rgba(0, 0, 0, 0.1);
+  --color-scrollbar-track: #f9fafb;
+  --color-scrollbar-thumb: #cbd5e1;
+}
+
+.dark {
+  --color-bg-theme: #141414;
+  --color-card-theme: #1e1e1e;
+  --color-text-primary: #ffffff;
+  --color-text-secondary: #6a717e;
+  --color-border-theme: rgba(255, 255, 255, 0.05);
+  --color-input-bg: #282828;
+  --color-input-focus-bg: #333333;
+  --color-navbar-bg: #141414;
+  --color-navbar-border: #ffffff;
+  --color-footer-bg: #0f0f0f;
+  --shadow-card: 0 4px 10px rgba(255, 0, 0, 0.1);
+  --shadow-card-hover: 0 4px 10px rgba(255, 0, 0, 0.3);
+  --text-shadow-header: 4px 4px 5px black;
+  --color-scrollbar-track: #141414;
+  --color-scrollbar-thumb: #303030;
+}
+
+@theme {
+  --color-brand-red: #e50914;
+  --color-bg-dark: var(--color-bg-theme);
+  --color-card-dark: var(--color-card-theme);
+  --color-text-primary: var(--color-text-primary);
+  --color-text-secondary: var(--color-text-secondary);
+  --color-border-theme: var(--color-border-theme);
+  --color-input-bg: var(--color-input-bg);
+  --color-input-focus-bg: var(--color-input-focus-bg);
+  --color-navbar-bg: var(--color-navbar-bg);
+  --color-navbar-border: var(--color-navbar-border);
+  --color-footer-bg: var(--color-footer-bg);
+  
+  --shadow-card-custom: var(--shadow-card);
+  --shadow-card-custom-hover: var(--shadow-card-hover);
+  
+  --font-sans: 'Poppins', 'Montserrat', sans-serif;
+  --font-montserrat: 'Montserrat', sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-bg-theme);
+  color: var(--color-text-secondary);
+  font-family: var(--font-sans);
+  margin: 0;
+  padding: 0;
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+.header-shadow {
+  text-shadow: var(--text-shadow-header);
+}
+
+/* Custom scrollbar to match the theme */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-scrollbar-track);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-scrollbar-thumb);
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #e50914;
+}
