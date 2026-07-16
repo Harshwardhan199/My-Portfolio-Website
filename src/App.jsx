@@ -5,34 +5,45 @@ import Experience from "./components/Experience";
 import Skills from "./components/Skills";
 import Projects from "./components/Projects";
 import Contact from "./components/Contact";
+import { CursorProvider } from "./cursor/CursorContext";
+import CustomCursor from "./cursor/CustomCursor";
+import AnimatedBackground from "./background/AnimatedBackground";
 
 function App() {
   return (
-    <div className="bg-bg-dark text-text-secondary min-h-screen font-sans antialiased overflow-x-hidden selection:bg-brand-red selection:text-white transition-colors duration-300">
-      {/* Navigation Header */}
-      <Navbar />
+    <CursorProvider>
+      {/* Custom cursor overlay (desktop only, pointer:fine) */}
+      <CustomCursor />
 
-      {/* Main Single Page Sections */}
-      <main className="w-full flex flex-col items-center">
-        {/* Landing Hero */}
-        <Hero />
+      <div className="text-text-secondary min-h-screen font-sans antialiased selection:bg-brand-red selection:text-white transition-colors duration-300 relative z-10">
+        {/* Global animated background — fixed, spans entire app */}
+        <AnimatedBackground />
 
-        {/* Biography Highlights */}
-        <About />
+        {/* Navigation Header */}
+        <Navbar />
 
-        {/* Professional Experience */}
-        <Experience />
+        {/* Main Single Page Sections */}
+        <main className="w-full flex flex-col items-center relative z-20">
+          {/* Landing Hero */}
+          <Hero />
 
-        {/* Categorized Skills */}
-        <Skills />
+          {/* Biography Highlights */}
+          <About />
 
-        {/* Dynamic Projects Grid */}
-        <Projects />
+          {/* Professional Experience */}
+          <Experience />
 
-        {/* Contact Form Card */}
-        <Contact />
-      </main>
-    </div>
+          {/* Categorized Skills */}
+          <Skills />
+
+          {/* Dynamic Projects Grid */}
+          <Projects />
+
+          {/* Contact Form Card */}
+          <Contact />
+        </main>
+      </div>
+    </CursorProvider>
   );
 }
 
