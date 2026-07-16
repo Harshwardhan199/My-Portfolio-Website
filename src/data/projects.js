@@ -1,8 +1,8 @@
 import sageAiImg from "../assets/images/SageAI.png";
 import portfolioImg from "../assets/images/Portfolio-Website.png";
-import brandSightImg from "../assets/images/BrandSight-project.png";
+import brandSightImg from "../assets/images/BrandSight.png";
 import foodiesImg from "../assets/images/foodies.png";
-import placeholderImg from "../assets/images/OIP.jpeg";
+import threatVistaImg from "../assets/images/Threat-Vista.png";
 
 export const projectsData = [
   {
@@ -10,9 +10,9 @@ export const projectsData = [
     title: "National Cyber Threat Intelligence Hub",
     description: "A centralized platform designed to monitor, aggregate, and analyze real-time cyber threats. Features ingestion of feed intelligence, indicators of compromise (IoC) visualization, and collaborative threat response frameworks.",
     technologies: ["React", "Python", "FastAPI", "MongoDB", "Docker"],
-    github: "https://github.com/Harshwardhan199",
+    github: "https://github.com/ktyangden/National-Cyber-Threat-Intelligence-Hub",
     demo: "",
-    image: placeholderImg
+    image: threatVistaImg
   },
   {
     id: 2,
