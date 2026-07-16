@@ -20,7 +20,7 @@ export const projectsData = [
     description: "This is a MERN stack chatbot platform project with some additional features like Chats history organized in folder, reusable prompts and interactive quizzes.",
     technologies: ["React", "Node.js", "MongoDB", "LLM"],
     github: "https://github.com/Harshwardhan199/SageAI",
-    demo: "",
+    demo: "https://sage-ai-chatbot.vercel.app/",
     image: sageAiImg
   },
   {
@@ -32,22 +32,22 @@ export const projectsData = [
     demo: "",
     image: brandSightImg
   },
-  {
-    id: 4,
-    title: "Foodies",
-    description: "This is a team project where we built an android app where users can search recipes that can be made based on direct recipe name or ingredients on hand to minimize unused ingredients wastage.",
-    technologies: ["Kotlin", "XML", "Node.js", "MongoDB"],
-    github: "",
-    demo: "",
-    image: foodiesImg
-  },
-  {
-    id: 5,
-    title: "Portfolio Website",
-    description: "This is my personal project where I have built a responsive website for my portfolio to showcase my skill and projects. This website is built using HTML, CSS and JavaScript.",
-    technologies: ["HTML5", "CSS3"],
-    github: "https://github.com/Harshwardhan199/My-Portfolio-Website",
-    demo: "https://harshwardhansaini.netlify.app",
-    image: portfolioImg
-  }
+  // {
+  //   id: 4,
+  //   title: "Foodies",
+  //   description: "This is a team project where we built an android app where users can search recipes that can be made based on direct recipe name or ingredients on hand to minimize unused ingredients wastage.",
+  //   technologies: ["Kotlin", "XML", "Node.js", "MongoDB"],
+  //   github: "",
+  //   demo: "",
+  //   image: foodiesImg
+  // },
+  // {
+  //   id: 5,
+  //   title: "Portfolio Website",
+  //   description: "This is my personal project where I have built a responsive website for my portfolio to showcase my skill and projects. This website is built using HTML, CSS and JavaScript.",
+  //   technologies: ["HTML5", "CSS3"],
+  //   github: "https://github.com/Harshwardhan199/My-Portfolio-Website",
+  //   demo: "https://harshwardhansaini.netlify.app",
+  //   image: portfolioImg
+  // }
 ];
