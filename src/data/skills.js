@@ -17,11 +17,11 @@ export const skillsData = [
         description: "Typed JavaScript",
         icon: "https://img.icons8.com/?size=100&id=cHBUT9SmrD2V&format=png&color=ff0000"
       },
-      {
-        name: "Go",
-        description: "Systems Programming",
-        icon: "https://img.icons8.com/?size=100&id=66832&format=png&color=ff0000"
-      }
+      // {
+      //   name: "Go",
+      //   description: "Systems Programming",
+      //   icon: "https://img.icons8.com/?size=100&id=66832&format=png&color=ff0000"
+      // }
     ]
   },
   {
