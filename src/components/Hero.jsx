@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import profileImg from "../assets/images/Profile.png";
-import resumePdf from "../assets/resume.pdf";
+import resumePdf from "../assets/HarshwardhanSaini.pdf";
 import { useCursor } from "../cursor/useCursor";
 
 const roles = [
@@ -168,27 +168,21 @@ function Hero() {
           {/* Subtext info */}
           <div className="flex flex-col gap-4 text-left w-full text-base min-[650px]:text-lg text-text-secondary mb-8 font-sans">
             <div className="flex items-start gap-4">
-              <span className="text-xl select-none shrink-0 mt-1">
-                💻
-              </span>
+              <span className="text-xl select-none shrink-0 mt-1">💻</span>
               <p className="mt-1">
                 I'm a Software Developer passionate about building robust
                 backend architectures and AI-driven solutions.
               </p>
             </div>
             <div className="flex items-start gap-4">
-              <span className="text-xl select-none shrink-0 mt-1">
-                🎓
-              </span>
+              <span className="text-xl select-none shrink-0 mt-1">🎓</span>
               <p className="mt-1">
                 Currently pursuing Computer Science at NIIT University, focusing
                 on scalable distributed systems.
               </p>
             </div>
             <div className="flex items-start gap-4">
-              <span className="text-xl select-none shrink-0 mt-1">
-                🛠️
-              </span>
+              <span className="text-xl select-none shrink-0 mt-1">🛠️</span>
               <p className="mt-1">
                 Experienced in designing microservices, orchestrating clouds,
                 and building multi-agent AI ecosystems.

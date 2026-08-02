@@ -6,7 +6,7 @@ import AnimatedBackground from "../background/AnimatedBackground";
 
 // Asset Imports
 import profileImg from "../assets/images/Profile.png";
-import resumePdf from "../assets/resume.pdf";
+import resumePdf from "../assets/HarshwardhanSaini.pdf";
 import gitIcon from "../assets/images/Git.png";
 import phoneIcon from "../assets/images/phone.png";
 import nameIcon from "../assets/images/name.png";
@@ -270,7 +270,7 @@ const getTechIcon = (tech) => {
   const matched = allSkills.find(
     (s) =>
       s.name.toLowerCase() === tech.toLowerCase() ||
-      tech.toLowerCase().includes(s.name.toLowerCase())
+      tech.toLowerCase().includes(s.name.toLowerCase()),
   );
 
   if (matched) {
@@ -304,9 +304,15 @@ const getRespIcon = (idx) => {
 };
 
 const coreTech = [
-  "Dialogflow CX", "Angular", "GCP Cloud Run", "AWS Lambda", 
-  "BigQuery", "Model Context Protocol (MCP)", "Terraform", 
-  "Jenkins", "Cypress"
+  "Dialogflow CX",
+  "Angular",
+  "GCP Cloud Run",
+  "AWS Lambda",
+  "BigQuery",
+  "Model Context Protocol (MCP)",
+  "Terraform",
+  "Jenkins",
+  "Cypress",
 ];
 
 // Helper to chunk skills into alternating rows of 3 and 2 for the honeycomb shape
@@ -343,7 +349,7 @@ function Navbar() {
   const scaleX = useSpring(scrollYProgress, {
     stiffness: 100,
     damping: 30,
-    restDelta: 0.001
+    restDelta: 0.001,
   });
 
   useEffect(() => {
@@ -361,7 +367,7 @@ function Navbar() {
     const observerOptions = {
       root: null,
       rootMargin: "-45% 0px -45% 0px",
-      threshold: 0
+      threshold: 0,
     };
 
     const observerCallback = (entries) => {
@@ -372,7 +378,10 @@ function Navbar() {
       });
     };
 
-    const observer = new IntersectionObserver(observerCallback, observerOptions);
+    const observer = new IntersectionObserver(
+      observerCallback,
+      observerOptions,
+    );
     sections.forEach((id) => {
       const el = document.getElementById(id);
       if (el) observer.observe(el);
@@ -399,7 +408,7 @@ function Navbar() {
     { id: "experience", label: "Experience" },
     { id: "skills", label: "Skills" },
     { id: "projects", label: "Projects" },
-    { id: "contact", label: "Contact" }
+    { id: "contact", label: "Contact" },
   ];
 
   return (
@@ -423,16 +432,22 @@ function Navbar() {
                   <a
                     href={`#${item.id}`}
                     className={`font-montserrat text-lg transition-colors duration-300 font-medium ${
-                      isActive ? "text-brand-red" : "text-text-primary hover:text-brand-red"
+                      isActive
+                        ? "text-brand-red"
+                        : "text-text-primary hover:text-brand-red"
                     }`}
                   >
                     {item.label}
                   </a>
                   {isActive && (
-                    <motion.div 
+                    <motion.div
                       layoutId="activeUnderlineDemo"
                       className="absolute bottom-[-4px] left-0 right-0 h-[2px] bg-brand-red rounded-full"
-                      transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                      transition={{
+                        type: "spring",
+                        stiffness: 300,
+                        damping: 30,
+                      }}
                     />
                   )}
                 </li>
@@ -526,7 +541,9 @@ function Navbar() {
                           href={`#${item.id}`}
                           onClick={closeMenu}
                           className={`font-montserrat text-2xl transition-colors duration-300 block py-2.5 ${
-                            isActive ? "text-brand-red font-bold" : "text-text-primary hover:text-brand-red"
+                            isActive
+                              ? "text-brand-red font-bold"
+                              : "text-text-primary hover:text-brand-red"
                           }`}
                         >
                           {item.label}
@@ -542,9 +559,9 @@ function Navbar() {
         </AnimatePresence>
 
         {/* Integrated scroll progress bar at absolute bottom edge of navbar */}
-        <motion.div 
-          className="absolute bottom-0 left-0 right-0 h-[2.5px] bg-brand-red origin-left z-[1002]" 
-          style={{ scaleX }} 
+        <motion.div
+          className="absolute bottom-0 left-0 right-0 h-[2.5px] bg-brand-red origin-left z-[1002]"
+          style={{ scaleX }}
         />
       </nav>
     </>
@@ -572,7 +589,7 @@ function Hero() {
         setRoleText(
           isDeleting
             ? fullWord.substring(0, roleText.length - 1)
-            : fullWord.substring(0, roleText.length + 1)
+            : fullWord.substring(0, roleText.length + 1),
         );
       }, speed);
     }
@@ -588,7 +605,7 @@ function Hero() {
     const y = e.clientY - rect.top - rect.height / 2;
     setTilt({
       x: -(y / (rect.height / 2)) * 8,
-      y: (x / (rect.width / 2)) * 8
+      y: (x / (rect.width / 2)) * 8,
     });
   };
 
@@ -604,14 +621,18 @@ function Hero() {
       transition: {
         duration: 0.8,
         ease: "easeOut",
-        staggerChildren: 0.2
-      }
-    }
+        staggerChildren: 0.2,
+      },
+    },
   };
 
   const itemVariants = {
     hidden: { opacity: 0, y: 15 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } }
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.5, ease: "easeOut" },
+    },
   };
 
   const roles = [
@@ -619,16 +640,52 @@ function Hero() {
     "Backend Developer",
     "AI Engineer",
     "Cloud Enthusiast",
-    "Full Stack Developer"
+    "Full Stack Developer",
   ];
 
   const orbitingBadges = [
-    { name: "React", icon: "https://img.icons8.com/ios-glyphs/30/FFFFFF/react.png", class: "top-[5%] left-[-15%]", delay: 0, duration: 6 },
-    { name: "Node.js", icon: "https://img.icons8.com/windows/32/FFFFFF/node-js.png", class: "top-[15%] right-[-15%]", delay: 1, duration: 5.5 },
-    { name: "Docker", icon: "https://img.icons8.com/ios-filled/50/FFFFFF/docker.png", class: "bottom-[5%] left-[-15%]", delay: 0.5, duration: 6.5 },
-    { name: "Kubernetes", icon: "https://img.icons8.com/ios-filled/50/FFFFFF/kubernetes.png", class: "bottom-[20%] right-[-15%]", delay: 1.5, duration: 5.8 },
-    { name: "AWS", icon: "https://img.icons8.com/?size=100&id=AtEKkdldZfri&format=png&color=ffffff", class: "top-[-12%] left-[30%]", delay: 2, duration: 7 },
-    { name: "Redis", icon: "https://img.icons8.com/?size=100&id=dmAy2s25QyTr&format=png&color=ffffff", class: "bottom-[-12%] right-[30%]", delay: 0.8, duration: 6.2 }
+    {
+      name: "React",
+      icon: "https://img.icons8.com/ios-glyphs/30/FFFFFF/react.png",
+      class: "top-[5%] left-[-15%]",
+      delay: 0,
+      duration: 6,
+    },
+    {
+      name: "Node.js",
+      icon: "https://img.icons8.com/windows/32/FFFFFF/node-js.png",
+      class: "top-[15%] right-[-15%]",
+      delay: 1,
+      duration: 5.5,
+    },
+    {
+      name: "Docker",
+      icon: "https://img.icons8.com/ios-filled/50/FFFFFF/docker.png",
+      class: "bottom-[5%] left-[-15%]",
+      delay: 0.5,
+      duration: 6.5,
+    },
+    {
+      name: "Kubernetes",
+      icon: "https://img.icons8.com/ios-filled/50/FFFFFF/kubernetes.png",
+      class: "bottom-[20%] right-[-15%]",
+      delay: 1.5,
+      duration: 5.8,
+    },
+    {
+      name: "AWS",
+      icon: "https://img.icons8.com/?size=100&id=AtEKkdldZfri&format=png&color=ffffff",
+      class: "top-[-12%] left-[30%]",
+      delay: 2,
+      duration: 7,
+    },
+    {
+      name: "Redis",
+      icon: "https://img.icons8.com/?size=100&id=dmAy2s25QyTr&format=png&color=ffffff",
+      class: "bottom-[-12%] right-[30%]",
+      delay: 0.8,
+      duration: 6.2,
+    },
   ];
 
   return (
@@ -636,13 +693,13 @@ function Hero() {
       id="about"
       className="w-full min-h-screen pt-[10vh] flex flex-col items-center justify-center text-center p-4 min-[500px]:p-[50px] text-text-primary font-sans scroll-mt-[10vh] transition-colors duration-300 relative overflow-visible"
     >
-      <motion.div 
+      <motion.div
         variants={containerVariants}
         initial="hidden"
         animate="visible"
         className="flex flex-col min-[1000px]:flex-row justify-between items-center w-full max-w-[1100px] p-2.5 gap-16 min-[1000px]:gap-24 relative z-10"
       >
-        <motion.div 
+        <motion.div
           variants={itemVariants}
           className="flex flex-col items-center min-[1000px]:items-start text-center min-[1000px]:text-left max-w-[580px] p-2.5 min-[1000px]:p-[10px_40px_10px_10px] min-[650px]:text-base"
         >
@@ -666,19 +723,22 @@ function Hero() {
             <div className="flex items-start gap-4">
               <span className="text-xl select-none shrink-0 mt-1">💻</span>
               <p className="mt-1">
-                I'm a Software Developer passionate about building robust backend architectures and AI-driven solutions.
+                I'm a Software Developer passionate about building robust
+                backend architectures and AI-driven solutions.
               </p>
             </div>
             <div className="flex items-start gap-4">
               <span className="text-xl select-none shrink-0 mt-1">🎓</span>
               <p className="mt-1">
-                Currently pursuing Computer Science at NIIT University, focusing on scalable distributed systems.
+                Currently pursuing Computer Science at NIIT University, focusing
+                on scalable distributed systems.
               </p>
             </div>
             <div className="flex items-start gap-4">
               <span className="text-xl select-none shrink-0 mt-1">🛠️</span>
               <p className="mt-1">
-                Experienced in designing microservices, orchestrating clouds, and building multi-agent AI ecosystems.
+                Experienced in designing microservices, orchestrating clouds,
+                and building multi-agent AI ecosystems.
               </p>
             </div>
           </div>
@@ -734,14 +794,12 @@ function Hero() {
           </div>
         </motion.div>
 
-        <motion.div 
+        <motion.div
           variants={itemVariants}
           className="flex flex-col items-center gap-6 relative"
         >
           {/* Main Avatar Container */}
-          <div 
-            className="w-[260px] h-[260px] relative flex items-center justify-center group select-none"
-          >
+          <div className="w-[260px] h-[260px] relative flex items-center justify-center group select-none">
             <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-brand-red via-red-600 to-transparent animate-glow-spin p-[2px] opacity-70 group-hover:opacity-100 transition-opacity duration-300 blur-[2px]" />
             <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-brand-red via-red-500 to-transparent animate-glow-spin p-[2px]" />
 
@@ -760,19 +818,19 @@ function Hero() {
                 className={`absolute ${badge.class} z-30 w-[42px] h-[42px] min-[400px]:w-[48px] min-[400px]:h-[48px] rounded-full bg-card-dark border border-border-theme flex items-center justify-center shadow-[0_8px_20px_rgba(0,0,0,0.15)] hover:border-brand-red/50 hover:shadow-[0_8px_25px_rgba(229,9,20,0.2)] transition-colors duration-300`}
                 initial={{ y: 0 }}
                 animate={{
-                  y: [0, -10, 0]
+                  y: [0, -10, 0],
                 }}
                 transition={{
                   duration: badge.duration,
                   repeat: Infinity,
                   repeatType: "reverse",
                   ease: "easeInOut",
-                  delay: badge.delay
+                  delay: badge.delay,
                 }}
               >
-                <img 
-                  src={badge.icon} 
-                  alt={badge.name} 
+                <img
+                  src={badge.icon}
+                  alt={badge.name}
                   className="w-5 h-5 min-[400px]:w-6 min-[400px]:h-6 object-contain pointer-events-none theme-icon-invert"
                   loading="lazy"
                 />
@@ -814,30 +872,30 @@ function About() {
       opacity: 1,
       transition: {
         staggerChildren: 0.15,
-        delayChildren: 0.1
-      }
-    }
+        delayChildren: 0.1,
+      },
+    },
   };
 
   const cardVariants = {
-    hidden: { 
-      opacity: 0, 
-      y: 35, 
-      filter: "blur(6px)", 
-      scale: 0.97 
+    hidden: {
+      opacity: 0,
+      y: 35,
+      filter: "blur(6px)",
+      scale: 0.97,
     },
-    visible: { 
-      opacity: 1, 
-      y: 0, 
-      filter: "blur(0px)", 
-      scale: 1, 
-      transition: { 
-        type: "spring", 
-        stiffness: 80, 
+    visible: {
+      opacity: 1,
+      y: 0,
+      filter: "blur(0px)",
+      scale: 1,
+      transition: {
+        type: "spring",
+        stiffness: 80,
         damping: 18,
-        duration: 0.6
-      } 
-    }
+        duration: 0.6,
+      },
+    },
   };
 
   return (
@@ -846,7 +904,7 @@ function About() {
       className="w-full py-20 px-4 text-text-primary flex flex-col items-center justify-center font-sans transition-colors duration-300 relative z-20"
     >
       <div className="w-full max-w-[1100px] flex flex-col items-center">
-        <motion.h2 
+        <motion.h2
           initial={{ opacity: 0, y: -20, filter: "blur(4px)" }}
           whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
           viewport={{ once: true, margin: "-100px" }}
@@ -856,14 +914,14 @@ function About() {
           ABOUT ME
         </motion.h2>
 
-        <motion.div 
+        <motion.div
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-80px" }}
           className="grid grid-cols-1 md:grid-cols-3 gap-6 w-full"
         >
-          <motion.div 
+          <motion.div
             variants={cardVariants}
             className="group relative bg-card-dark p-8 rounded-2xl border border-border-theme hover:border-brand-red/30 transition-all duration-500 overflow-hidden flex flex-col gap-5 shadow-sm hover:shadow-[0_8px_30px_rgba(229,9,20,0.08)] hover:-translate-y-1 cursor-default"
           >
@@ -875,11 +933,13 @@ function About() {
               Education
             </h3>
             <p className="text-text-secondary text-[15px] leading-relaxed z-10 font-sans">
-              Pursuing a Bachelor of Technology in Computer Science at NIIT University. I specialize in backend architectures, system design, and intelligence integration.
+              Pursuing a Bachelor of Technology in Computer Science at NIIT
+              University. I specialize in backend architectures, system design,
+              and intelligence integration.
             </p>
           </motion.div>
 
-          <motion.div 
+          <motion.div
             variants={cardVariants}
             className="group relative bg-card-dark p-8 rounded-2xl border border-border-theme hover:border-brand-red/30 transition-all duration-500 overflow-hidden flex flex-col gap-5 shadow-sm hover:shadow-[0_8px_30px_rgba(229,9,20,0.08)] hover:-translate-y-1 cursor-default"
           >
@@ -891,11 +951,13 @@ function About() {
               My Focus
             </h3>
             <p className="text-text-secondary text-[15px] leading-relaxed z-10 font-sans">
-              I am highly focused on building full-stack applications, designing microservices, and crafting multi-agent AI ecosystems that solve concrete business challenges.
+              I am highly focused on building full-stack applications, designing
+              microservices, and crafting multi-agent AI ecosystems that solve
+              concrete business challenges.
             </p>
           </motion.div>
 
-          <motion.div 
+          <motion.div
             variants={cardVariants}
             className="group relative bg-card-dark p-8 rounded-2xl border border-border-theme hover:border-brand-red/30 transition-all duration-500 overflow-hidden flex flex-col gap-5 shadow-sm hover:shadow-[0_8px_30px_rgba(229,9,20,0.08)] hover:-translate-y-1 cursor-default"
           >
@@ -907,7 +969,9 @@ function About() {
               Philosophy
             </h3>
             <p className="text-text-secondary text-[15px] leading-relaxed z-10 font-sans">
-              I believe in clean, reusable code, rigorous automation, and continuous optimization. Turning complex challenges into simple, maintainable software is my ultimate goal.
+              I believe in clean, reusable code, rigorous automation, and
+              continuous optimization. Turning complex challenges into simple,
+              maintainable software is my ultimate goal.
             </p>
           </motion.div>
         </motion.div>
@@ -924,19 +988,19 @@ function Experience() {
       opacity: 1,
       transition: {
         staggerChildren: 0.2,
-        delayChildren: 0.1
-      }
-    }
+        delayChildren: 0.1,
+      },
+    },
   };
 
   const cardVariants = {
     hidden: { opacity: 0, x: -30, filter: "blur(4px)" },
-    visible: { 
-      opacity: 1, 
-      x: 0, 
+    visible: {
+      opacity: 1,
+      x: 0,
       filter: "blur(0px)",
-      transition: { type: "spring", stiffness: 70, damping: 15 }
-    }
+      transition: { type: "spring", stiffness: 70, damping: 15 },
+    },
   };
 
   const listVariants = {
@@ -944,14 +1008,14 @@ function Experience() {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.08
-      }
-    }
+        staggerChildren: 0.08,
+      },
+    },
   };
 
   const itemVariants = {
     hidden: { opacity: 0, x: -10 },
-    visible: { opacity: 1, x: 0, transition: { duration: 0.3 } }
+    visible: { opacity: 1, x: 0, transition: { duration: 0.3 } },
   };
 
   return (
@@ -960,7 +1024,7 @@ function Experience() {
       className="w-full py-20 px-4 text-text-primary flex flex-col items-center justify-center font-sans scroll-mt-[10vh] transition-colors duration-300 relative z-20"
     >
       <div className="w-full max-w-[1100px] flex flex-col items-center">
-        <motion.h2 
+        <motion.h2
           initial={{ opacity: 0, y: -20, filter: "blur(4px)" }}
           whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
           viewport={{ once: true, margin: "-100px" }}
@@ -970,7 +1034,7 @@ function Experience() {
           EXPERIENCE
         </motion.h2>
 
-        <motion.div 
+        <motion.div
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
@@ -982,8 +1046,8 @@ function Experience() {
           {experienceData.map((exp, index) => (
             <div key={index} className="w-full relative mb-8">
               <div className="absolute left-[-29px] min-[600px]:left-[-45px] top-1.5 w-4 h-4 rounded-full bg-brand-red border-4 border-bg-dark z-10 shadow-[0_0_10px_rgba(229,9,20,0.5)] animate-pulse" />
-              
-              <motion.div 
+
+              <motion.div
                 variants={cardVariants}
                 className="w-full bg-card-dark p-6 min-[600px]:p-8 rounded-2xl border border-border-theme shadow-sm hover:border-brand-red/30 transition-all duration-300"
               >
@@ -1001,13 +1065,13 @@ function Experience() {
                   </div>
                 </div>
 
-                <motion.ul 
+                <motion.ul
                   variants={listVariants}
                   className="flex flex-col gap-4 list-none pl-0 mb-8"
                 >
                   {exp.responsibilities.map((resp, idx) => (
-                    <motion.li 
-                      key={idx} 
+                    <motion.li
+                      key={idx}
                       variants={itemVariants}
                       className="flex items-start gap-3 text-[15px] min-[500px]:text-base text-text-secondary leading-relaxed font-sans"
                     >
@@ -1015,16 +1079,39 @@ function Experience() {
                         {getRespIcon(idx)}
                       </span>
                       <span className="mt-0.5">
-                        {resp.split(/\b(ADK|Dialogflow CX|Angular|MCP|Cloud Run|AWS Lambda|Google Cloud Functions|BigQuery|Cypress|Terraform|Jenkins|GitHub Actions|AI conversational agents|backend APIs|CI\/CD pipelines)\b/g).map((part, i) => {
-                          const isKeyword = ["ADK", "Dialogflow CX", "Angular", "MCP", "Cloud Run", "AWS Lambda", "Google Cloud Functions", "BigQuery", "Cypress", "Terraform", "Jenkins", "GitHub Actions", "AI conversational agents", "backend APIs", "CI/CD pipelines"].includes(part);
-                          return isKeyword ? (
-                            <strong key={i} className="font-semibold text-text-primary">
-                              {part}
-                            </strong>
-                          ) : (
-                            part
-                          );
-                        })}
+                        {resp
+                          .split(
+                            /\b(ADK|Dialogflow CX|Angular|MCP|Cloud Run|AWS Lambda|Google Cloud Functions|BigQuery|Cypress|Terraform|Jenkins|GitHub Actions|AI conversational agents|backend APIs|CI\/CD pipelines)\b/g,
+                          )
+                          .map((part, i) => {
+                            const isKeyword = [
+                              "ADK",
+                              "Dialogflow CX",
+                              "Angular",
+                              "MCP",
+                              "Cloud Run",
+                              "AWS Lambda",
+                              "Google Cloud Functions",
+                              "BigQuery",
+                              "Cypress",
+                              "Terraform",
+                              "Jenkins",
+                              "GitHub Actions",
+                              "AI conversational agents",
+                              "backend APIs",
+                              "CI/CD pipelines",
+                            ].includes(part);
+                            return isKeyword ? (
+                              <strong
+                                key={i}
+                                className="font-semibold text-text-primary"
+                              >
+                                {part}
+                              </strong>
+                            ) : (
+                              part
+                            );
+                          })}
                       </span>
                     </motion.li>
                   ))}
@@ -1036,8 +1123,8 @@ function Experience() {
                   </h4>
                   <div className="flex flex-wrap gap-2">
                     {coreTech.map((tech, idx) => (
-                      <span 
-                        key={idx} 
+                      <span
+                        key={idx}
                         className="text-xs font-semibold px-3 py-1.5 rounded-lg bg-input-bg border border-border-theme text-text-primary hover:border-brand-red/30 transition-colors duration-300"
                       >
                         {tech}
@@ -1060,75 +1147,85 @@ function HoneycombCell({ skill, idx, rowLength }) {
 
   // L = 3: idx 0 tilts left (-6deg), idx 1 no tilt (0deg), idx 2 tilts right (6deg)
   // L = 2: idx 0 tilts left (-6deg), idx 1 tilts right (6deg)
-  const tiltVal = rowLength === 3
-    ? (idx === 0 ? -6 : idx === 2 ? 6 : 0)
-    : (rowLength === 2 ? (idx === 0 ? -6 : 6) : 0);
+  const tiltVal =
+    rowLength === 3
+      ? idx === 0
+        ? -6
+        : idx === 2
+          ? 6
+          : 0
+      : rowLength === 2
+        ? idx === 0
+          ? -6
+          : 6
+        : 0;
 
   return (
-    <motion.div 
+    <motion.div
       layout
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       className="skill flex items-center justify-center relative w-[125px] h-[143px] min-[400px]:w-[150px] min-[400px]:h-[172px] overflow-visible group cursor-pointer"
     >
       {/* Hexagon SVG Background with hover glow, scaling, and custom direction tilt */}
-      <svg className="absolute inset-0 w-full h-full overflow-visible" viewBox="0 0 100 110">
-        <polygon 
-          points="50,0 100,25 100,75 50,100 0,75 0,25" 
+      <svg
+        className="absolute inset-0 w-full h-full overflow-visible"
+        viewBox="0 0 100 110"
+      >
+        <polygon
+          points="50,0 100,25 100,75 50,100 0,75 0,25"
           className="fill-card-dark stroke-border-theme stroke-[2.5] group-hover:stroke-brand-red/60 group-hover:[filter:drop-shadow(0_1px_12px_rgba(229,9,20,0.35))] transition-all duration-500"
           style={{
             transform: `scale(${isHovered ? 1.015 : 0.95}) rotate(${isHovered ? tiltVal : 0}deg)`,
-            transformOrigin: "center"
+            transformOrigin: "center",
           }}
         />
       </svg>
-      
+
       {/* HTML Content Overlay (100% GPU-accelerated transitions) */}
       {/* HTML Content Overlay (100% GPU-accelerated transitions) */}
-      <motion.div 
+      <motion.div
         className="absolute inset-0 overflow-hidden pointer-events-none"
         animate={{
-          rotate: isHovered ? tiltVal : 0
+          rotate: isHovered ? tiltVal : 0,
         }}
         transition={{
           type: "spring",
           stiffness: 180,
-          damping: 20
+          damping: 20,
         }}
       >
         {/* Icon (Absolute Positioned with Framer Motion spring) */}
-        <motion.img 
-          src={skill.icon} 
-          alt={`${skill.name} Icon`} 
+        <motion.img
+          src={skill.icon}
+          alt={`${skill.name} Icon`}
           className="absolute left-1/2 top-1/2 w-[45px] h-[45px] min-[400px]:w-[55px] min-[400px]:h-[55px] object-contain select-none"
           loading="lazy"
           initial={{ x: "-50%", y: "-50%", scale: 1 }}
           animate={{
             x: "-50%",
-            y: isHovered 
-              ? (window.innerWidth < 400 ? "-85%" : "-95%") 
-              : "-50%",
-            scale: isHovered ? 0.55 : 1
+            y: isHovered ? (window.innerWidth < 400 ? "-85%" : "-95%") : "-50%",
+            scale: isHovered ? 0.55 : 1,
           }}
           transition={{
             type: "spring",
             stiffness: 200,
-            damping: 22
+            damping: 22,
           }}
         />
-        
+
         {/* Reveal text inside hexagon (Framer Motion fade & scale) */}
-        <motion.div 
+        <motion.div
           className="absolute bottom-[38px] min-[400px]:bottom-[46px] left-0 right-0 flex flex-col items-center text-center px-2 pointer-events-none"
           initial={{ opacity: 0, scale: 0.9, y: 4 }}
           animate={{
             opacity: isHovered ? 1 : 0,
             scale: isHovered ? 1 : 0.9,
-            y: isHovered ? 0 : 4
+            y: isHovered ? 0 : 4,
           }}
           transition={{
             duration: 0.25,
-            ease: "easeOut"
+            ease: "easeOut",
           }}
         >
           <h4 className="text-[10px] min-[400px]:text-[12px] font-extrabold text-text-primary tracking-wide leading-none font-sans">
@@ -1148,13 +1245,13 @@ function Skills() {
   const [activeCategory, setActiveCategory] = useState("All");
 
   const filterCategories = [
-    "All", 
-    "Programming", 
-    "Frontend", 
-    "Backend", 
-    "AI & Agents", 
-    "Cloud & DevOps", 
-    "Databases & Architecture"
+    "All",
+    "Programming",
+    "Frontend",
+    "Backend",
+    "AI & Agents",
+    "Cloud & DevOps",
+    "Databases & Architecture",
   ];
 
   return (
@@ -1163,7 +1260,7 @@ function Skills() {
       className="w-full py-20 px-4 text-text-primary flex flex-col items-center justify-center font-sans scroll-mt-[10vh] transition-colors duration-300 relative z-20"
     >
       <div className="w-full max-w-[1100px] flex flex-col items-center">
-        <motion.h2 
+        <motion.h2
           initial={{ opacity: 0, y: -20, filter: "blur(4px)" }}
           whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
           viewport={{ once: true, margin: "-100px" }}
@@ -1181,7 +1278,7 @@ function Skills() {
                 key={idx}
                 onClick={() => setActiveCategory(cat)}
                 className={`text-xs font-semibold px-4 py-2 rounded-full cursor-pointer transition-all duration-300 border ${
-                  isActive 
+                  isActive
                     ? "bg-brand-red text-white border-brand-red shadow-sm"
                     : "bg-card-dark border-border-theme text-text-primary hover:border-brand-red/30"
                 }`}
@@ -1192,26 +1289,31 @@ function Skills() {
           })}
         </div>
 
-        <motion.div 
+        <motion.div
           layout="position"
           className="w-full flex flex-col items-center gap-16"
         >
           <AnimatePresence mode="popLayout">
             {skillsData
-              .filter((group) => activeCategory === "All" || group.category === activeCategory)
+              .filter(
+                (group) =>
+                  activeCategory === "All" || group.category === activeCategory,
+              )
               .map((categoryGroup, catIndex) => {
                 const filteredSkills = categoryGroup.items;
                 const isFirst = catIndex === 0 && activeCategory === "All";
-                const isLast = categoryGroup.category === "Databases & Architecture" && activeCategory === "All";
+                const isLast =
+                  categoryGroup.category === "Databases & Architecture" &&
+                  activeCategory === "All";
 
                 return (
-                  <motion.div 
+                  <motion.div
                     layout
                     initial={{ opacity: 0, scale: 0.95 }}
                     animate={{ opacity: 1, scale: 1 }}
                     exit={{ opacity: 0, scale: 0.95 }}
                     transition={{ duration: 0.3 }}
-                    key={categoryGroup.category} 
+                    key={categoryGroup.category}
                     className="w-full text-center"
                   >
                     <h3 className="inline-block font-black text-[22px] min-[500px]:text-[26px] text-text-primary mt-4 mb-10 pb-1.5 border-b-2 border-brand-red font-sans">
@@ -1219,19 +1321,19 @@ function Skills() {
                     </h3>
 
                     {isFirst || isLast ? (
-                      <motion.div 
+                      <motion.div
                         layout
                         className="flex flex-wrap items-center justify-center gap-5 max-w-[1200px] mx-auto my-5"
                       >
                         {filteredSkills.map((skill) => (
-                          <motion.div 
+                          <motion.div
                             layout
                             key={skill.name}
                             className="flex flex-col items-center justify-center w-[clamp(145px,43vw,190px)] h-[250px] p-5 bg-card-dark border border-border-theme rounded-xl shadow-sm hover:shadow-[0_8px_25px_rgba(229,9,20,0.08)] hover:border-brand-red/30 transition-all duration-300 hover:-translate-y-0.5 cursor-default"
                           >
-                            <img 
-                              src={skill.icon} 
-                              alt={`${skill.name} Icon`} 
+                            <img
+                              src={skill.icon}
+                              alt={`${skill.name} Icon`}
                               className="w-10 h-10 mt-2 mb-6 object-contain select-none"
                               loading="lazy"
                             />
@@ -1245,26 +1347,28 @@ function Skills() {
                         ))}
                       </motion.div>
                     ) : (
-                      <motion.div 
+                      <motion.div
                         layout
                         className="flex flex-col items-center justify-center"
                       >
-                        {chunkSkillsIntoHoneycombRows(filteredSkills).map((row, rowIndex) => (
-                          <motion.div 
-                            layout
-                            key={rowIndex} 
-                            className="flex items-center justify-center gap-2.5 -mt-[40px] min-[400px]:-mt-[50px] first:mt-0 overflow-visible"
-                          >
-                            {row.map((skill, idx) => (
-                              <HoneycombCell 
-                                key={skill.name} 
-                                skill={skill} 
-                                idx={idx} 
-                                rowLength={row.length} 
-                              />
-                            ))}
-                          </motion.div>
-                        ))}
+                        {chunkSkillsIntoHoneycombRows(filteredSkills).map(
+                          (row, rowIndex) => (
+                            <motion.div
+                              layout
+                              key={rowIndex}
+                              className="flex items-center justify-center gap-2.5 -mt-[40px] min-[400px]:-mt-[50px] first:mt-0 overflow-visible"
+                            >
+                              {row.map((skill, idx) => (
+                                <HoneycombCell
+                                  key={skill.name}
+                                  skill={skill}
+                                  idx={idx}
+                                  rowLength={row.length}
+                                />
+                              ))}
+                            </motion.div>
+                          ),
+                        )}
                       </motion.div>
                     )}
                   </motion.div>
@@ -1301,7 +1405,9 @@ function ProjectCard({ project }) {
     setTilt({ x: 0, y: 0 });
   };
 
-  const isTeamProject = project.description.toLowerCase().includes("team project");
+  const isTeamProject = project.description
+    .toLowerCase()
+    .includes("team project");
 
   return (
     <motion.div
@@ -1311,40 +1417,49 @@ function ProjectCard({ project }) {
       onMouseLeave={handleMouseLeave}
       className="project-card flex flex-col relative bg-card-dark border border-border-theme rounded-2xl overflow-hidden shadow-sm hover:border-brand-red/35 transition-all duration-300 w-full cursor-pointer h-full group"
       style={{
-        transform: isHovered 
+        transform: isHovered
           ? `perspective(1000px) rotateX(${tilt.x}deg) rotateY(${tilt.y}deg) scale(1.005)`
           : "perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1)",
-        transition: "transform 0.12s ease-out, border-color 0.3s ease"
+        transition: "transform 0.12s ease-out, border-color 0.3s ease",
       }}
     >
       {isHovered && (
-        <div 
+        <div
           className="absolute inset-0 pointer-events-none z-10 transition-opacity duration-300"
           style={{
-            background: `radial-gradient(180px circle at ${spotlight.x}px ${spotlight.y}px, rgba(229, 9, 20, 0.06) 0%, transparent 100%)`
+            background: `radial-gradient(180px circle at ${spotlight.x}px ${spotlight.y}px, rgba(229, 9, 20, 0.06) 0%, transparent 100%)`,
           }}
         />
       )}
 
       {project.github && (
         <div className="absolute right-3.5 top-3.5 h-[34px] w-[34px] z-20 opacity-80 hover:opacity-100 hover:scale-110 transition-all duration-300">
-          <a href={project.github} target="_blank" rel="noopener noreferrer" className="block cursor-pointer">
-            <img src={gitIcon} alt="GitHub Link" className="h-[34px] w-[34px] rounded-full object-cover" />
+          <a
+            href={project.github}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="block cursor-pointer"
+          >
+            <img
+              src={gitIcon}
+              alt="GitHub Link"
+              className="h-[34px] w-[34px] rounded-full object-cover"
+            />
           </a>
         </div>
       )}
 
       <div className="w-full h-[200px] overflow-hidden border-b border-border-theme relative z-0">
-        <img 
-          src={project.image} 
-          alt={project.title} 
+        <img
+          src={project.image}
+          alt={project.title}
           className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-103 select-none"
           loading="lazy"
         />
         {project.demo && (
-          <a 
-            href={project.demo} 
-            target="_blank" 
+          <a
+            href={project.demo}
+            target="_blank"
             rel="noopener noreferrer"
             className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center text-white font-bold text-sm tracking-wide z-10"
           >
@@ -1371,13 +1486,13 @@ function ProjectCard({ project }) {
 
         <div className="flex flex-wrap gap-2 mt-auto">
           {project.technologies.map((tech, idx) => (
-            <span 
-              key={idx} 
+            <span
+              key={idx}
               className="flex items-center gap-1.5 bg-input-bg border border-border-theme text-text-primary text-[11px] font-semibold px-2.5 py-1 rounded-full select-none transition-colors duration-300 hover:border-brand-red/35 font-sans"
             >
-              <img 
-                src={getTechIcon(tech)} 
-                alt="" 
+              <img
+                src={getTechIcon(tech)}
+                alt=""
                 className="w-3.5 h-3.5 object-contain theme-icon-invert"
                 aria-hidden="true"
               />
@@ -1392,31 +1507,31 @@ function ProjectCard({ project }) {
 
 const cardVariants = {
   hidden: { opacity: 0, y: 40, filter: "blur(5px)" },
-  visible: { 
-    opacity: 1, 
-    y: 0, 
+  visible: {
+    opacity: 1,
+    y: 0,
     filter: "blur(0px)",
-    transition: { type: "spring", stiffness: 70, damping: 15 }
-  }
+    transition: { type: "spring", stiffness: 70, damping: 15 },
+  },
 };
 
 const containerVariants = {
   hidden: {},
   visible: {
     transition: {
-      staggerChildren: 0.15
-    }
-  }
+      staggerChildren: 0.15,
+    },
+  },
 };
 
 function Projects() {
   return (
-    <section 
-      id="projects" 
+    <section
+      id="projects"
       className="w-full py-20 px-4 text-text-primary flex flex-col items-center justify-center font-sans scroll-mt-[10vh] transition-colors duration-300 relative z-20"
     >
       <div className="w-full max-w-[1100px] flex flex-col items-center">
-        <motion.h2 
+        <motion.h2
           initial={{ opacity: 0, y: -20, filter: "blur(4px)" }}
           whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
           viewport={{ once: true, margin: "-100px" }}
@@ -1426,7 +1541,7 @@ function Projects() {
           PROJECTS
         </motion.h2>
 
-        <motion.div 
+        <motion.div
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
@@ -1493,7 +1608,7 @@ function Contact() {
       className="w-full py-20 px-4 text-text-primary flex flex-col items-center justify-center font-sans scroll-mt-[10vh] transition-colors duration-300 relative z-20"
     >
       <div className="w-full max-w-[1100px] flex flex-col items-center">
-        <motion.h2 
+        <motion.h2
           initial={{ opacity: 0, y: -20, filter: "blur(4px)" }}
           whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
           viewport={{ once: true, margin: "-100px" }}
@@ -1503,7 +1618,7 @@ function Contact() {
           CONTACT
         </motion.h2>
 
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-80px" }}
@@ -1512,7 +1627,7 @@ function Contact() {
         >
           <AnimatePresence mode="wait">
             {status.submitted ? (
-              <motion.div 
+              <motion.div
                 key="success"
                 initial={{ opacity: 0, scale: 0.95, y: 15 }}
                 animate={{ opacity: 1, scale: 1, y: 0 }}
@@ -1534,18 +1649,23 @@ function Contact() {
                     <polyline points="20 6 9 17 4 12" />
                   </svg>
                 </div>
-                
+
                 <h3 className="text-2xl font-bold text-text-primary mb-3">
                   Message Sent!
                 </h3>
-                
+
                 <p className="text-text-secondary max-w-[420px] text-[15px] leading-relaxed font-sans">
-                  Thank you for reaching out. Your message has been received, and I will get back to you as soon as possible.
+                  Thank you for reaching out. Your message has been received,
+                  and I will get back to you as soon as possible.
                 </p>
-                
+
                 <button
                   onClick={() =>
-                    setStatus({ submitting: false, submitted: false, error: null })
+                    setStatus({
+                      submitting: false,
+                      submitted: false,
+                      error: null,
+                    })
                   }
                   className="mt-8 px-6 py-2.5 bg-input-bg hover:bg-input-focus-bg text-text-primary border border-border-theme rounded-xl font-bold text-sm transition-all duration-300 cursor-pointer hover:-translate-y-0.5"
                 >
@@ -1664,9 +1784,25 @@ function Contact() {
                     <span className="relative z-10 flex items-center gap-2">
                       {status.submitting ? (
                         <>
-                          <svg className="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                            <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                            <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                          <svg
+                            className="animate-spin h-5 w-5 text-white"
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                          >
+                            <circle
+                              className="opacity-25"
+                              cx="12"
+                              cy="12"
+                              r="10"
+                              stroke="currentColor"
+                              strokeWidth="4"
+                            ></circle>
+                            <path
+                              className="opacity-75"
+                              fill="currentColor"
+                              d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                            ></path>
                           </svg>
                           Sending...
                         </>
