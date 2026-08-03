@@ -15,7 +15,7 @@ function Navbar() {
   const [activeSection, setActiveSection] = useState("about");
   const [theme, setTheme] = useState(() => {
     if (typeof window !== "undefined") {
-      return localStorage.getItem("theme") || "dark"; // Default to dark theme
+      return localStorage.getItem("theme") || "dark";
     }
     return "dark";
   });
@@ -43,7 +43,7 @@ function Navbar() {
   useEffect(() => {
     const observerOptions = {
       root: null,
-      rootMargin: "-45% 0px -45% 0px", // Trigger when section hits the center of the viewport
+      rootMargin: "-45% 0px -45% 0px",
       threshold: 0,
     };
 
@@ -85,19 +85,19 @@ function Navbar() {
 
   return (
     <>
-      <nav className="fixed top-0 left-0 w-full h-[10vh] flex justify-between items-center bg-navbar-bg border-navbar-border px-4 min-[400px]:px-[30px] z-[1000] font-sans backdrop-blur-md transition-colors duration-300">
+      <nav className="fixed top-0 left-0 w-full h-14 md:h-[10vh] flex justify-between items-center bg-navbar-bg border-navbar-border px-3 min-[400px]:px-[30px] z-[1000] font-sans backdrop-blur-md transition-colors duration-300">
         {/* Brand Name */}
-        <div className="flex-1">
+        <div className="flex-1 min-w-0 pr-2">
           <a
             href="#"
-            className="text-brand-red text-[clamp(22px,3.5vw,30px)] font-bold tracking-wide drop-shadow-[2px_2px_5px_rgba(0,0,0,0.5)] hover:text-red-500 transition-colors"
+            className="text-brand-red text-[clamp(14px,4vw,30px)] font-bold tracking-wide hover:text-red-500 transition-colors block truncate"
           >
             HARSHWARDHAN SAINI
           </a>
         </div>
 
         {/* Navigation Links and Theme Switcher */}
-        <div className="flex items-center gap-6">
+        <div className="flex items-center gap-2.5 min-[400px]:gap-6 shrink-0">
           {/* Desktop Navigation Links */}
           <ul className="hidden md:flex items-center gap-8 list-none relative">
             {navItems.map((item) => {
@@ -126,12 +126,11 @@ function Navbar() {
           {/* Theme Toggle Button */}
           <button
             onClick={toggleTheme}
-            className="text-text-primary hover:text-brand-red transition-colors duration-300 cursor-pointer focus:outline-none flex items-center justify-center p-1.5"
+            className="text-text-primary hover:text-brand-red transition-colors duration-300 cursor-pointer focus:outline-none flex items-center justify-center p-1"
             aria-label="Toggle Theme"
             {...btnCursor}
           >
             {theme === "dark" ? (
-              // Sun Icon (shows in Dark Mode to switch to Light)
               <svg
                 stroke="currentColor"
                 fill="none"
@@ -139,7 +138,7 @@ function Navbar() {
                 viewBox="0 0 24 24"
                 strokeLinecap="round"
                 strokeLinejoin="round"
-                className="w-6 h-6 transition-transform duration-500 hover:rotate-45"
+                className="w-5 h-5 min-[400px]:w-6 min-[400px]:h-6 transition-transform duration-500 hover:rotate-45"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <circle cx="12" cy="12" r="5"></circle>
@@ -153,7 +152,6 @@ function Navbar() {
                 <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
               </svg>
             ) : (
-              // Moon Icon (shows in Light Mode to switch to Dark)
               <svg
                 stroke="currentColor"
                 fill="none"
@@ -161,7 +159,7 @@ function Navbar() {
                 viewBox="0 0 24 24"
                 strokeLinecap="round"
                 strokeLinejoin="round"
-                className="w-6 h-6 transition-transform duration-500 hover:-rotate-12"
+                className="w-5 h-5 min-[400px]:w-6 min-[400px]:h-6 transition-transform duration-500 hover:-rotate-12"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
@@ -176,34 +174,32 @@ function Navbar() {
             aria-label="Toggle Menu"
           >
             <img
-              className="h-[30px] w-[30px] transition-all duration-300"
+              className="h-[24px] w-[24px] min-[400px]:h-[28px] min-[400px]:w-[28px] transition-all duration-300"
               src={`https://img.icons8.com/?size=100&id=36389&format=png&color=${hamburgerColor}`}
               alt="Menu icon"
             />
           </button>
         </div>
 
-        {/* Mobile Drawer Menu (Framer Motion transitions) */}
+        {/* Mobile Drawer Menu */}
         <AnimatePresence>
           {isOpen && (
             <>
-              {/* Overlay Backdrop */}
               <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0.2 }}
                 onClick={closeMenu}
-                className="fixed top-[10vh] left-0 w-screen h-[90vh] bg-black/50 backdrop-blur-xs z-[998]"
+                className="fixed top-14 md:top-[10vh] left-0 w-screen h-[calc(100vh-56px)] md:h-[90vh] bg-black/50 backdrop-blur-xs z-[998]"
               />
 
-              {/* Drawer Menu */}
               <motion.div
                 initial={{ x: "100%" }}
                 animate={{ x: 0 }}
                 exit={{ x: "100%" }}
                 transition={{ type: "spring", bounce: 0, duration: 0.35 }}
-                className="fixed w-[200px] h-[90vh] top-[10vh] right-0 p-5 rounded-l-xl bg-card-dark/95 border-l border-navbar-border shadow-[0_8px_30px_rgba(0,0,0,0.3)] z-[999] backdrop-blur-md"
+                className="fixed w-[200px] max-w-[80vw] h-[calc(100vh-56px)] md:h-[90vh] top-14 md:top-[10vh] right-0 p-4 min-[400px]:p-5 rounded-l-xl bg-card-dark/95 border-l border-navbar-border shadow-[0_8px_30px_rgba(0,0,0,0.3)] z-[999] backdrop-blur-md"
               >
                 <ul className="flex flex-col w-full list-none gap-2">
                   {navItems.map((item) => {
@@ -213,7 +209,7 @@ function Navbar() {
                         <a
                           href={`#${item.id}`}
                           onClick={closeMenu}
-                          className={`font-montserrat text-2xl transition-colors duration-300 block py-2.5 ${
+                          className={`font-montserrat text-xl min-[400px]:text-2xl transition-colors duration-300 block py-2.5 ${
                             isActive
                               ? "text-brand-red font-bold"
                               : "text-text-primary hover:text-brand-red"
@@ -231,7 +227,7 @@ function Navbar() {
           )}
         </AnimatePresence>
 
-        {/* Integrated scroll progress bar at absolute bottom edge of navbar */}
+        {/* Integrated scroll progress bar */}
         <motion.div
           className="absolute bottom-0 left-0 right-0 h-[2.5px] bg-brand-red origin-left z-[1002]"
           style={{ scaleX }}

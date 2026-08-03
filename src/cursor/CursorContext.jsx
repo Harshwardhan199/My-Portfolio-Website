@@ -31,17 +31,16 @@ export function CursorProvider({ children }) {
     return () => mq.removeEventListener("change", handler);
   }, []);
 
-  // Spring-based motion values for position, width, height, and border radius
+  // Motion values for position, width, height, and border radius
   const rawX = useMotionValue(-200);
   const rawY = useMotionValue(-200);
   const rawWidth = useMotionValue(14);
   const rawHeight = useMotionValue(14);
   const rawRadius = useMotionValue(9999);
 
-  // Ultrafast responsive spring configuration for near-instant 1:1 tracking
-  const springConfig = { stiffness: 1600, damping: 50, mass: 0.1 };
-  // Snappier spring configuration specifically for size expansion and morphing
-  const sizeSpringConfig = { stiffness: 2000, damping: 45, mass: 0.05 };
+  // Ultrafast spring configurations for smooth 1:1 position tracking & morphing expansion
+  const springConfig = { stiffness: 1800, damping: 48, mass: 0.08 };
+  const sizeSpringConfig = { stiffness: 1600, damping: 40, mass: 0.05 };
 
   const cursorX = useSpring(rawX, springConfig);
   const cursorY = useSpring(rawY, springConfig);
@@ -62,7 +61,7 @@ export function CursorProvider({ children }) {
     return () => window.removeEventListener("mousemove", move);
   }, [isActive, hoveredEl, rawX, rawY]);
 
-  // requestAnimationFrame loop to track element size, position, and border-radius
+  // requestAnimationFrame loop to track element size, position, and border-radius to cover complete element
   useEffect(() => {
     if (!isActive) return;
 
@@ -85,7 +84,7 @@ export function CursorProvider({ children }) {
       rawX.set(rect.left + rect.width / 2);
       rawY.set(rect.top + rect.height / 2);
 
-      // Width and height with 8px padding on all sides (16px total)
+      // Width and height with 8px padding on all sides (16px total) to cover complete element
       rawWidth.set(rect.width + 16);
       rawHeight.set(rect.height + 16);
       rawRadius.set(borderRadius + 8);
@@ -109,7 +108,7 @@ export function CursorProvider({ children }) {
     setIntentState(CURSOR_INTENTS.DEFAULT);
   }, []);
 
-  // Global event delegation for interactive elements (links, buttons) and text fields
+  // Global event delegation for interactive elements (links, buttons, clickables)
   useEffect(() => {
     if (!isActive) return;
 

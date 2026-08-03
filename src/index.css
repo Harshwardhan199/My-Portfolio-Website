@@ -10,8 +10,8 @@
   --color-border-theme: rgba(0, 0, 0, 0.08);
   --color-input-bg: #f3f4f6;
   --color-input-focus-bg: #e2e8f0;
-  --color-navbar-bg: rgba(249, 250, 251, 0.9);
-  --color-navbar-border: rgba(0, 0, 0, 0.1);
+  --color-navbar-bg: rgba(249, 250, 251, 0.75);
+  --color-navbar-border: rgba(0, 0, 0, 0.08);
   --color-footer-bg: #f3f4f6;
   --shadow-card: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03), 0 0 0 1px rgba(0, 0, 0, 0.05);
   --shadow-card-hover: 0 10px 20px -3px rgba(229, 9, 20, 0.15), 0 4px 6px -4px rgba(229, 9, 20, 0.1), 0 0 0 1px rgba(229, 9, 20, 0.15);
@@ -28,8 +28,8 @@
   --color-border-theme: rgba(255, 255, 255, 0.05);
   --color-input-bg: #282828;
   --color-input-focus-bg: #333333;
-  --color-navbar-bg: #141414;
-  --color-navbar-border: #ffffff;
+  --color-navbar-bg: rgba(20, 20, 20, 0.75);
+  --color-navbar-border: rgba(255, 255, 255, 0.08);
   --color-footer-bg: #0f0f0f;
   --shadow-card: 0 4px 10px rgba(255, 0, 0, 0.1);
   --shadow-card-hover: 0 4px 10px rgba(255, 0, 0, 0.3);
@@ -61,6 +61,7 @@
 html {
   scroll-behavior: smooth;
   overflow-x: hidden;
+  max-width: 100vw;
 }
 
 body {
@@ -71,6 +72,12 @@ body {
   padding: 0;
   transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
   overflow-x: hidden;
+  max-width: 100vw;
+}
+
+#root {
+  overflow-x: hidden;
+  max-width: 100vw;
 }
 
 .header-shadow {
@@ -97,8 +104,8 @@ body {
 
 /* Scrollbar styling */
 ::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+  width: 6px;
+  height: 6px;
 }
 ::-webkit-scrollbar-track {
   background: var(--color-scrollbar-track);
@@ -106,7 +113,7 @@ body {
 ::-webkit-scrollbar-thumb {
   background: var(--color-scrollbar-thumb);
   border-radius: 4px;
-  border: 2px solid var(--color-scrollbar-track);
+  border: 1px solid var(--color-scrollbar-track);
   transition: background-color 0.3s;
 }
 ::-webkit-scrollbar-thumb:hover {

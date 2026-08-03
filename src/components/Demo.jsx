@@ -413,7 +413,7 @@ function Navbar() {
 
   return (
     <>
-      <nav className="fixed top-0 left-0 w-full h-[10vh] flex justify-between items-center bg-navbar-bg border-b border-navbar-border px-4 min-[400px]:px-[30px] z-[1000] font-sans backdrop-blur-md transition-colors duration-300">
+      <nav className="fixed top-0 left-0 w-full h-[10vh] flex justify-between items-center bg-navbar-bg px-4 min-[400px]:px-[30px] z-[1000] font-sans backdrop-blur-md transition-colors duration-300">
         <div className="flex-1">
           <a
             href="#"
@@ -431,25 +431,13 @@ function Navbar() {
                 <li key={item.id} className="relative py-1">
                   <a
                     href={`#${item.id}`}
-                    className={`font-montserrat text-lg transition-colors duration-300 font-medium ${
-                      isActive
-                        ? "text-brand-red"
-                        : "text-text-primary hover:text-brand-red"
-                    }`}
+                    className={`font-montserrat text-lg transition-colors duration-300 font-medium ${isActive
+                      ? "text-brand-red"
+                      : "text-text-primary hover:text-brand-red"
+                      }`}
                   >
                     {item.label}
                   </a>
-                  {isActive && (
-                    <motion.div
-                      layoutId="activeUnderlineDemo"
-                      className="absolute bottom-[-4px] left-0 right-0 h-[2px] bg-brand-red rounded-full"
-                      transition={{
-                        type: "spring",
-                        stiffness: 300,
-                        damping: 30,
-                      }}
-                    />
-                  )}
                 </li>
               );
             })}
@@ -540,11 +528,10 @@ function Navbar() {
                         <a
                           href={`#${item.id}`}
                           onClick={closeMenu}
-                          className={`font-montserrat text-2xl transition-colors duration-300 block py-2.5 ${
-                            isActive
-                              ? "text-brand-red font-bold"
-                              : "text-text-primary hover:text-brand-red"
-                          }`}
+                          className={`font-montserrat text-2xl transition-colors duration-300 block py-2.5 ${isActive
+                            ? "text-brand-red font-bold"
+                            : "text-text-primary hover:text-brand-red"
+                            }`}
                         >
                           {item.label}
                         </a>
@@ -1277,11 +1264,10 @@ function Skills() {
               <button
                 key={idx}
                 onClick={() => setActiveCategory(cat)}
-                className={`text-xs font-semibold px-4 py-2 rounded-full cursor-pointer transition-all duration-300 border ${
-                  isActive
-                    ? "bg-brand-red text-white border-brand-red shadow-sm"
-                    : "bg-card-dark border-border-theme text-text-primary hover:border-brand-red/30"
-                }`}
+                className={`text-xs font-semibold px-4 py-2 rounded-full cursor-pointer transition-all duration-300 border ${isActive
+                  ? "bg-brand-red text-white border-brand-red shadow-sm"
+                  : "bg-card-dark border-border-theme text-text-primary hover:border-brand-red/30"
+                  }`}
               >
                 {cat}
               </button>

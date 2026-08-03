@@ -55,7 +55,7 @@ export default function CustomCursor() {
     };
   }, [isActive]);
 
-  // Apply cursor:none to body
+  // Apply custom cursor active class to body
   useEffect(() => {
     if (!isActive || prefersReduced) return;
     document.body.classList.add("custom-cursor-active");
@@ -88,7 +88,7 @@ export default function CustomCursor() {
         opacity: isVisible ? config.opacity : 0,
       }}
       transition={{
-        duration: 0.2,
+        duration: 0.15,
         ease: "easeOut",
       }}
     />

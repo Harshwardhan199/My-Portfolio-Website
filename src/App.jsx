@@ -1,49 +1,47 @@
-import Navbar from "./components/Navbar";
-import Hero from "./components/Hero";
-import About from "./components/About";
-import Experience from "./components/Experience";
-import Skills from "./components/Skills";
-import Projects from "./components/Projects";
-import Contact from "./components/Contact";
-import { CursorProvider } from "./cursor/CursorContext";
-import CustomCursor from "./cursor/CustomCursor";
+import { useEffect } from "react";
+import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
+import { AuthProvider } from "./hooks/useAuth";
 import AnimatedBackground from "./background/AnimatedBackground";
+import Toast from "./components/Toast";
+import Portfolio from "./pages/Portfolio";
+import Admin from "./pages/Admin";
+
+function MainContent() {
+  const location = useLocation();
+  const isAdmin = location.pathname.startsWith("/admin");
+
+  // Sync initial theme class on document element from localStorage
+  useEffect(() => {
+    const savedTheme = localStorage.getItem("theme") || "dark";
+    if (savedTheme === "dark") {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
+  }, []);
+
+  return (
+    <div className="text-text-secondary min-h-screen font-sans antialiased selection:bg-brand-red selection:text-white transition-colors duration-300 relative z-10">
+      {/* Render animated grid background only on public portfolio & preview pages */}
+      {!isAdmin && <AnimatedBackground />}
+
+      <Routes>
+        <Route path="/" element={<Portfolio isPreview={false} />} />
+        <Route path="/preview" element={<Portfolio isPreview={true} />} />
+        <Route path="/admin/*" element={<Admin />} />
+      </Routes>
+    </div>
+  );
+}
 
 function App() {
   return (
-    <CursorProvider>
-      {/* Custom cursor overlay (desktop only, pointer:fine) */}
-      <CustomCursor />
-
-      <div className="text-text-secondary min-h-screen font-sans antialiased selection:bg-brand-red selection:text-white transition-colors duration-300 relative z-10">
-        {/* Global animated background — fixed, spans entire app */}
-        <AnimatedBackground />
-
-        {/* Navigation Header */}
-        <Navbar />
-
-        {/* Main Single Page Sections */}
-        <main className="w-full flex flex-col items-center relative z-20">
-          {/* Landing Hero */}
-          <Hero />
-
-          {/* Biography Highlights */}
-          <About />
-
-          {/* Professional Experience */}
-          <Experience />
-
-          {/* Categorized Skills */}
-          <Skills />
-
-          {/* Dynamic Projects Grid */}
-          <Projects />
-
-          {/* Contact Form Card */}
-          <Contact />
-        </main>
-      </div>
-    </CursorProvider>
+    <AuthProvider>
+      <BrowserRouter>
+        <Toast />
+        <MainContent />
+      </BrowserRouter>
+    </AuthProvider>
   );
 }
 
