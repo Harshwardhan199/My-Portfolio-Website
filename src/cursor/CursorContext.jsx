@@ -160,6 +160,8 @@ export function CursorProvider({ children }) {
     <CursorContext.Provider
       value={{
         intent,
+        setIntent,
+        resetIntent,
         isActive,
         cursorX,
         cursorY,

@@ -14,44 +14,8 @@ const defaultCoreTech = [
 ];
 
 function Experience({ data }) {
-  const cardCursor = useCursor("card");
+  const cardCursor = useCursor("button");
   const activeExperience = data?.length ? data : defaultExperienceData;
-
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.2,
-        delayChildren: 0.1,
-      },
-    },
-  };
-
-  const cardVariants = {
-    hidden: { opacity: 0, x: -30, filter: "blur(4px)" },
-    visible: {
-      opacity: 1,
-      x: 0,
-      filter: "blur(0px)",
-      transition: { type: "spring", stiffness: 70, damping: 15 },
-    },
-  };
-
-  const listVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.08,
-      },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, x: -10 },
-    visible: { opacity: 1, x: 0, transition: { duration: 0.3 } },
-  };
 
   return (
     <section
@@ -72,16 +36,19 @@ function Experience({ data }) {
 
         {/* Timeline Container */}
         <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-80px" }}
+          transition={{ duration: 0.5 }}
           className="w-full space-y-6 min-[500px]:space-y-10"
         >
           {activeExperience.map((exp, idx) => (
             <motion.div
               key={exp.id || idx}
-              variants={cardVariants}
+              initial={{ opacity: 0, y: 25 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: idx * 0.1 }}
               className="group relative bg-card-dark p-4 min-[400px]:p-6 min-[500px]:p-10 rounded-2xl border border-border-theme hover:border-brand-red/30 transition-all duration-500 shadow-sm hover:shadow-[0_8px_30px_rgba(229,9,20,0.08)] hover:-translate-y-1 overflow-hidden"
               {...cardCursor}
             >
@@ -105,14 +72,14 @@ function Experience({ data }) {
               </div>
 
               {/* Responsibilities list */}
-              <motion.ul variants={listVariants} className="space-y-3 min-[500px]:space-y-4 mb-6 min-[500px]:mb-10 list-none p-0">
+              <ul className="space-y-3 min-[500px]:space-y-4 mb-6 min-[500px]:mb-10 list-none p-0">
                 {(exp.responsibilities || []).map((resp, rIdx) => (
-                  <motion.li key={rIdx} variants={itemVariants} className="flex items-start gap-2.5 min-[400px]:gap-4 text-text-secondary text-xs min-[400px]:text-sm sm:text-base leading-relaxed">
+                  <li key={rIdx} className="flex items-start gap-2.5 min-[400px]:gap-4 text-text-secondary text-xs min-[400px]:text-sm sm:text-base leading-relaxed">
                     <span className="text-sm min-[400px]:text-base min-[500px]:text-lg select-none shrink-0 mt-0.5">{getRespIcon(rIdx)}</span>
                     <span className="font-sans">{resp}</span>
-                  </motion.li>
+                  </li>
                 ))}
-              </motion.ul>
+              </ul>
 
               {/* Tech Stack Pills */}
               <div className="pt-4 min-[500px]:pt-6 border-t border-border-theme flex flex-wrap items-center gap-1.5 min-[400px]:gap-2">
