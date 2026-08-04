@@ -28,14 +28,30 @@ const chunkSkillsIntoHoneycombRows = (items) => {
 };
 
 // Local Component to handle isolated cell hover, tilt, icon upward transition and text reveal animations
-function HoneycombCell({ skill, idx, rowIndex, rowLength, iconObj, isWaveActive }) {
+function HoneycombCell({ skill, idx, rowIndex, rowLength, iconObj, activeWaveStep }) {
   const [isHovered, setIsHovered] = useState(false);
-  const activeHover = isHovered || isWaveActive;
+
+  // Calculate cell step in the center-first button click ripple sequence:
+  // Step 0: [0] center piece (origin)
+  // Step 1: [-1] and [+1] adjacent cells
+  // Step 2: [-2] and [+2] diagonal cells
+  // Step 3: [00] bottom cell
+  const getCellWaveStep = () => {
+    if (rowIndex === 0 && rowLength === 3) {
+      if (idx === 1) return 0; // [0] center piece
+      return 1;                // [-1] and [+1]
+    }
+    if (rowIndex === 1 && rowLength === 2) {
+      return 2;                // [-2] and [+2]
+    }
+    return 3;                  // [00]
+  };
+
+  const cellStep = getCellWaveStep();
+  const isWaveActiveCell = activeWaveStep === cellStep;
+  const activeHover = isHovered || isWaveActiveCell;
 
   // Directional movement mapping (reduced by 30% overall):
-  // [-1] [0] [+1]  (Row 0: [-1] moves left -11px, [+1] moves right 11px, [0] stays center)
-  //   [-2] [+2]    (Row 1: [-2] moves away from [0] diagonally -10px & 10px, [+2] moves away from [0] diagonally 10px & 10px)
-  //      [00]      (Row 2: [00] moves straight toward bottom 13px)
   const getDirectionalShift = () => {
     if (rowLength === 3) {
       if (idx === 0) return { x: -11, y: 0 };  // [-1] move toward left
@@ -51,9 +67,9 @@ function HoneycombCell({ skill, idx, rowIndex, rowLength, iconObj, isWaveActive 
 
   const shift = getDirectionalShift();
   const iconSrc = iconObj?.url || skill.icon;
-  const springConfig = { type: "spring", stiffness: 180, damping: 22 };
-  const animTransition = isWaveActive && !isHovered
-    ? { duration: 0.38, ease: "easeOut" }
+  const springConfig = { type: "spring", stiffness: 220, damping: 20 };
+  const animTransition = isWaveActiveCell && !isHovered
+    ? { type: "spring", stiffness: 260, damping: 18 }
     : springConfig;
 
   return (
@@ -61,7 +77,7 @@ function HoneycombCell({ skill, idx, rowIndex, rowLength, iconObj, isWaveActive 
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       animate={{
-        scale: activeHover ? 1.05 : 1,
+        scale: activeHover ? 1.06 : 1,
         x: activeHover ? shift.x : 0,
         y: activeHover ? shift.y : 0,
         zIndex: activeHover ? 40 : 1,
@@ -143,13 +159,17 @@ function HoneycombCell({ skill, idx, rowIndex, rowLength, iconObj, isWaveActive 
 }
 
 // Local Component to handle compact rectangular skill card hover & wave animations
-function RectangularCardCell({ skill, iconObj, isWaveActive }) {
+function RectangularCardCell({ skill, idx, totalItems, iconObj, activeWaveStep }) {
   const [isHovered, setIsHovered] = useState(false);
-  const activeHover = isHovered || isWaveActive;
+  const centerIdx = Math.floor(totalItems / 2);
+  const cellStep = Math.abs(idx - centerIdx);
+  const isWaveActiveCell = activeWaveStep === cellStep;
+  const activeHover = isHovered || isWaveActiveCell;
+
   const iconSrc = iconObj?.url || skill.icon;
-  const springConfig = { type: "spring", stiffness: 180, damping: 22 };
-  const animTransition = isWaveActive && !isHovered
-    ? { duration: 0.38, ease: "easeOut" }
+  const springConfig = { type: "spring", stiffness: 220, damping: 20 };
+  const animTransition = isWaveActiveCell && !isHovered
+    ? { type: "spring", stiffness: 260, damping: 18 }
     : springConfig;
 
   return (
@@ -157,7 +177,7 @@ function RectangularCardCell({ skill, iconObj, isWaveActive }) {
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       animate={{
-        scale: activeHover ? 1.04 : 1,
+        scale: activeHover ? 1.05 : 1,
         y: activeHover ? -6 : 0,
       }}
       transition={animTransition}
@@ -193,7 +213,7 @@ function RectangularCardCell({ skill, iconObj, isWaveActive }) {
   );
 }
 
-// Local Component to handle per-category sub-section scroll wave animation (row1 -> row2 -> row3)
+// Local Component to handle per-category sub-section scroll wave animation (Center [0] -> Adjacent -> Diagonal -> Bottom)
 function SkillCategoryBlock({
   categoryGroup,
   catIndex,
@@ -203,7 +223,7 @@ function SkillCategoryBlock({
   onSectionEnter,
   onSectionWaveComplete,
 }) {
-  const [activeWaveRow, setActiveWaveRow] = useState(-1);
+  const [activeWaveStep, setActiveWaveStep] = useState(-1);
   const hasTriggeredRef = useRef(false);
 
   const filteredSkills = categoryGroup.items || [];
@@ -216,24 +236,25 @@ function SkillCategoryBlock({
     ? [filteredSkills]
     : chunkSkillsIntoHoneycombRows(filteredSkills);
 
-  // Trigger row wave ONLY when this section is active in the global sequence
+  // Trigger ripple wave ONLY when this section is active in the global sequence
   useEffect(() => {
     if (!isWaveActiveSection || hasTriggeredRef.current) return;
     hasTriggeredRef.current = true;
 
-    let row = 0;
+    let step = 0;
+    const maxSteps = 4; // Step 0: [0], Step 1: [-1]/[+1], Step 2: [-2]/[+2], Step 3: [00]
     const interval = setInterval(() => {
-      setActiveWaveRow(row);
-      row++;
-      if (row > rows.length) {
+      setActiveWaveStep(step);
+      step++;
+      if (step > maxSteps) {
         clearInterval(interval);
-        setActiveWaveRow(-1);
+        setActiveWaveStep(-1);
         onSectionWaveComplete(catIndex);
       }
-    }, 600);
+    }, 280);
 
     return () => clearInterval(interval);
-  }, [isWaveActiveSection, rows.length, catIndex, onSectionWaveComplete]);
+  }, [isWaveActiveSection, catIndex, onSectionWaveComplete]);
 
   return (
     <motion.div
@@ -257,12 +278,14 @@ function SkillCategoryBlock({
           layout
           className="flex flex-wrap items-center justify-center gap-3 min-[360px]:gap-4 max-w-[1200px] mx-auto my-3 min-[400px]:my-5"
         >
-          {filteredSkills.map((skill) => (
+          {filteredSkills.map((skill, idx) => (
             <RectangularCardCell
               key={skill.id || skill.name}
               skill={skill}
+              idx={idx}
+              totalItems={filteredSkills.length}
               iconObj={iconMap.get(skill.iconId)}
-              isWaveActive={activeWaveRow === 0}
+              activeWaveStep={activeWaveStep}
             />
           ))}
         </motion.div>
@@ -286,7 +309,7 @@ function SkillCategoryBlock({
                   rowIndex={rowIndex}
                   rowLength={row.length}
                   iconObj={iconMap.get(skill.iconId)}
-                  isWaveActive={activeWaveRow === rowIndex}
+                  activeWaveStep={activeWaveStep}
                 />
               ))}
             </motion.div>
