@@ -28,25 +28,28 @@ const chunkSkillsIntoHoneycombRows = (items) => {
 };
 
 // Local Component to handle isolated cell hover, tilt, icon upward transition and text reveal animations
-function HoneycombCell({ skill, idx, rowLength, iconObj, isWaveActive }) {
+function HoneycombCell({ skill, idx, rowIndex, rowLength, iconObj, isWaveActive }) {
   const [isHovered, setIsHovered] = useState(false);
   const activeHover = isHovered || isWaveActive;
 
-  // L = 3: idx 0 tilts left (-6deg), idx 1 no tilt (0deg), idx 2 tilts right (6deg)
-  // L = 2: idx 0 tilts left (-6deg), idx 1 tilts right (6deg)
-  const tiltVal =
-    rowLength === 3
-      ? idx === 0
-        ? -6
-        : idx === 2
-          ? 6
-          : 0
-      : rowLength === 2
-        ? idx === 0
-          ? -6
-          : 6
-        : 0;
+  // Directional movement mapping (reduced by 30% overall):
+  // [-1] [0] [+1]  (Row 0: [-1] moves left -11px, [+1] moves right 11px, [0] stays center)
+  //   [-2] [+2]    (Row 1: [-2] moves away from [0] diagonally -10px & 10px, [+2] moves away from [0] diagonally 10px & 10px)
+  //      [00]      (Row 2: [00] moves straight toward bottom 13px)
+  const getDirectionalShift = () => {
+    if (rowLength === 3) {
+      if (idx === 0) return { x: -11, y: 0 };  // [-1] move toward left
+      if (idx === 1) return { x: 0, y: 0 };    // [0] center
+      if (idx === 2) return { x: 11, y: 0 };   // [+1] move toward right
+    }
+    if (rowLength === 2) {
+      if (idx === 0) return { x: -10, y: 10 }; // [-2] move away from [0], diagonally (left-down)
+      if (idx === 1) return { x: 10, y: 10 };  // [+2] move away from [0], diagonally (right-down)
+    }
+    return { x: 0, y: 13 };                    // [00] move toward bottom
+  };
 
+  const shift = getDirectionalShift();
   const iconSrc = iconObj?.url || skill.icon;
   const springConfig = { type: "spring", stiffness: 180, damping: 22 };
   const animTransition = isWaveActive && !isHovered
@@ -59,7 +62,8 @@ function HoneycombCell({ skill, idx, rowLength, iconObj, isWaveActive }) {
       onMouseLeave={() => setIsHovered(false)}
       animate={{
         scale: activeHover ? 1.05 : 1,
-        rotate: activeHover ? tiltVal : 0,
+        x: activeHover ? shift.x : 0,
+        y: activeHover ? shift.y : 0,
         zIndex: activeHover ? 40 : 1,
       }}
       transition={animTransition}
@@ -272,13 +276,14 @@ function SkillCategoryBlock({
             <motion.div
               layout
               key={rowIndex}
-              className="flex items-center justify-center gap-2 min-[320px]:gap-3 min-[360px]:gap-4 min-[400px]:gap-5 -mt-[10px] min-[320px]:-mt-[18px] min-[360px]:-mt-[22px] min-[400px]:-mt-[26px] first:mt-0 overflow-visible"
+              className="flex items-center justify-center gap-0.5 min-[320px]:gap-1.5 min-[360px]:gap-2 min-[400px]:gap-2.5 -mt-[20px] min-[320px]:-mt-[30px] min-[360px]:-mt-[37px] min-[400px]:-mt-[43px] first:mt-0 overflow-visible"
             >
               {row.map((skill, idx) => (
                 <HoneycombCell
                   key={skill.id || skill.name}
                   skill={skill}
                   idx={idx}
+                  rowIndex={rowIndex}
                   rowLength={row.length}
                   iconObj={iconMap.get(skill.iconId)}
                   isWaveActive={activeWaveRow === rowIndex}
