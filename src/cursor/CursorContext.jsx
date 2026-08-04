@@ -38,12 +38,11 @@ export function CursorProvider({ children }) {
   const rawHeight = useMotionValue(14);
   const rawRadius = useMotionValue(9999);
 
-  // Ultrafast spring configurations for smooth 1:1 position tracking & morphing expansion
-  const springConfig = { stiffness: 1800, damping: 48, mass: 0.08 };
+  // Size spring configuration for morphing expansion
   const sizeSpringConfig = { stiffness: 1600, damping: 40, mass: 0.05 };
 
-  const cursorX = useSpring(rawX, springConfig);
-  const cursorY = useSpring(rawY, springConfig);
+  const cursorX = rawX;
+  const cursorY = rawY;
   const cursorW = useSpring(rawWidth, sizeSpringConfig);
   const cursorH = useSpring(rawHeight, sizeSpringConfig);
   const cursorR = useSpring(rawRadius, sizeSpringConfig);

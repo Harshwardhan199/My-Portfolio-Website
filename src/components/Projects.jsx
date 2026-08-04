@@ -35,7 +35,7 @@ function Projects({ data, icons = [] }) {
   return (
     <section
       id="projects"
-      className="w-full py-14 min-[400px]:py-20 px-3 min-[400px]:px-4 text-text-primary flex flex-col items-center justify-center font-sans scroll-mt-[10vh] transition-colors duration-300 relative z-20"
+      className="w-full py-14 min-[400px]:py-20 px-3 min-[400px]:px-4 text-text-primary flex flex-col items-center justify-center font-sans scroll-mt-24 lg:scroll-mt-[12vh] transition-colors duration-300 relative z-20"
     >
       <div className="w-full max-w-[1100px] flex flex-col items-center">
         {/* Section Header */}
@@ -110,7 +110,7 @@ function Projects({ data, icons = [] }) {
                           className="flex items-center gap-1 min-[400px]:gap-1.5 px-2 py-0.5 min-[400px]:px-3 min-[400px]:py-1 rounded-lg bg-input-bg border border-border-theme text-text-secondary text-[10px] min-[400px]:text-xs font-medium"
                         >
                           {matchedIcon?.url && (
-                            <img src={matchedIcon.url} alt={tech} className="w-3 h-3 min-[400px]:w-3.5 min-[400px]:h-3.5 object-contain theme-icon-invert" />
+                            <img src={matchedIcon.url} alt={tech} className="w-3 h-3 min-[400px]:w-3.5 min-[400px]:h-3.5 object-contain" />
                           )}
                           {tech}
                         </span>

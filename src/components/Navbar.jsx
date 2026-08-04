@@ -85,12 +85,13 @@ function Navbar() {
 
   return (
     <>
-      <nav className="fixed top-0 left-0 w-full h-14 md:h-[10vh] flex justify-between items-center bg-navbar-bg border-navbar-border px-3 min-[400px]:px-[30px] z-[1000] font-sans backdrop-blur-md transition-colors duration-300">
+      <nav className="fixed top-0 left-0 w-full h-16 lg:h-[10vh] flex justify-between items-center bg-navbar-bg border-navbar-border px-3 min-[400px]:px-[30px] z-[1000] font-sans backdrop-blur-md transition-colors duration-300">
         {/* Brand Name */}
-        <div className="flex-1 min-w-0 pr-2">
+        <div className="flex-1 min-w-0 pr-2 flex items-center">
           <a
             href="#"
-            className="text-brand-red text-[clamp(14px,4vw,30px)] font-bold tracking-wide hover:text-red-500 transition-colors block truncate"
+            className="text-brand-red text-[clamp(18px,3.5vw,30px)] font-bold tracking-wide hover:text-red-500 transition-colors inline-block whitespace-nowrap shrink-0"
+            {...linkCursor}
           >
             HARSHWARDHAN SAINI
           </a>
@@ -98,31 +99,6 @@ function Navbar() {
 
         {/* Navigation Links and Theme Switcher */}
         <div className="flex items-center gap-2.5 min-[400px]:gap-6 shrink-0">
-          {/* Desktop Navigation Links */}
-          <ul className="hidden md:flex items-center gap-8 list-none relative">
-            {navItems.map((item) => {
-              const isActive = activeSection === item.id;
-              return (
-                <li key={item.id} className="relative py-1">
-                  <a
-                    href={`#${item.id}`}
-                    className={`font-montserrat text-lg transition-colors duration-300 font-medium ${
-                      isActive
-                        ? "text-brand-red"
-                        : "text-text-primary hover:text-brand-red"
-                    }`}
-                    {...linkCursor}
-                  >
-                    {item.label}
-                  </a>
-                </li>
-              );
-            })}
-          </ul>
-
-          {/* Desktop/Tablet Vertical Divider */}
-          <div className="w-[1.5px] h-4 bg-neutral-300 dark:bg-neutral-700 hidden md:block mx-1" />
-
           {/* Theme Toggle Button */}
           <button
             onClick={toggleTheme}
@@ -167,10 +143,35 @@ function Navbar() {
             )}
           </button>
 
-          {/* Mobile Hamburger Button */}
+          {/* Desktop/Tablet Vertical Divider */}
+          <div className="w-[1.5px] h-4 bg-neutral-300 dark:bg-neutral-700 hidden lg:block mx-1" />
+
+          {/* Desktop Navigation Links */}
+          <ul className="hidden lg:flex items-center gap-8 list-none relative">
+            {navItems.map((item) => {
+              const isActive = activeSection === item.id;
+              return (
+                <li key={item.id} className="relative py-1">
+                  <a
+                    href={`#${item.id}`}
+                    className={`font-montserrat text-lg transition-colors duration-300 font-medium ${
+                      isActive
+                        ? "text-brand-red"
+                        : "text-text-primary hover:text-brand-red"
+                    }`}
+                    {...linkCursor}
+                  >
+                    {item.label}
+                  </a>
+                </li>
+              );
+            })}
+          </ul>
+
+          {/* Mobile/Tablet Hamburger Button */}
           <button
             onClick={toggleMenu}
-            className="block md:hidden focus:outline-none cursor-pointer z-[1001] p-1"
+            className="block lg:hidden focus:outline-none cursor-pointer z-[1001] p-1"
             aria-label="Toggle Menu"
           >
             <img
@@ -181,7 +182,7 @@ function Navbar() {
           </button>
         </div>
 
-        {/* Mobile Drawer Menu */}
+        {/* Mobile/Tablet Drawer Menu */}
         <AnimatePresence>
           {isOpen && (
             <>
@@ -191,7 +192,7 @@ function Navbar() {
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0.2 }}
                 onClick={closeMenu}
-                className="fixed top-14 md:top-[10vh] left-0 w-screen h-[calc(100vh-56px)] md:h-[90vh] bg-black/50 backdrop-blur-xs z-[998]"
+                className="fixed top-16 lg:top-[10vh] left-0 w-screen h-[calc(100vh-64px)] lg:h-[90vh] bg-black/50 backdrop-blur-xs z-[998]"
               />
 
               <motion.div
@@ -199,7 +200,7 @@ function Navbar() {
                 animate={{ x: 0 }}
                 exit={{ x: "100%" }}
                 transition={{ type: "spring", bounce: 0, duration: 0.35 }}
-                className="fixed w-[200px] max-w-[80vw] h-[calc(100vh-56px)] md:h-[90vh] top-14 md:top-[10vh] right-0 p-4 min-[400px]:p-5 rounded-l-xl bg-card-dark/95 border-l border-navbar-border shadow-[0_8px_30px_rgba(0,0,0,0.3)] z-[999] backdrop-blur-md"
+                className="fixed w-[220px] max-w-[80vw] h-[calc(100vh-64px)] lg:h-[90vh] top-16 lg:top-[10vh] right-0 p-4 min-[400px]:p-5 rounded-l-xl bg-card-dark/95 border-l border-navbar-border shadow-[0_8px_30px_rgba(0,0,0,0.3)] z-[999] backdrop-blur-md"
               >
                 <ul className="flex flex-col w-full list-none gap-2">
                   {navItems.map((item) => {

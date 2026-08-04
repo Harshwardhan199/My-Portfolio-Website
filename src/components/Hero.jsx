@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { defaultHeroData } from "../data/hero";
 import { useCursor } from "../cursor/useCursor";
+import { openPdfInNewTab } from "../utils/pdfUtils";
 
 const orbitingBadges = [
   {
@@ -116,7 +117,7 @@ function Hero({ data }) {
   return (
     <section
       id="about"
-      className="w-full min-h-screen pt-[10vh] flex flex-col items-center justify-center text-center px-3 min-[500px]:p-[50px] text-text-primary font-sans scroll-mt-[10vh] transition-colors duration-300 relative overflow-visible"
+      className="w-full min-h-screen pt-24 lg:pt-[12vh] flex flex-col items-center justify-center text-center px-3 min-[500px]:px-[50px] pb-12 text-text-primary font-sans scroll-mt-24 lg:scroll-mt-[10vh] transition-colors duration-300 relative overflow-visible"
     >
       <motion.div
         variants={containerVariants}
@@ -181,11 +182,10 @@ function Hero({ data }) {
               <div className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/10 to-transparent -left-[100%] group-hover:left-[100%] transition-all duration-1000 ease-out z-0" />
             </a>
 
-            <a
-              href={resumeHref}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center justify-center gap-2 bg-brand-red text-white border border-transparent rounded-xl px-4 py-2 min-[400px]:px-5 min-[400px]:py-2.5 font-bold transition-all duration-300 shadow-md hover:shadow-[0_4px_25px_rgba(229,9,20,0.3)] hover:-translate-y-0.5 relative overflow-hidden group no-underline shrink-0"
+            <button
+              type="button"
+              onClick={() => openPdfInNewTab(resumeHref)}
+              className="flex items-center justify-center gap-2 bg-brand-red text-white border border-transparent rounded-xl px-4 py-2 min-[400px]:px-5 min-[400px]:py-2.5 font-bold transition-all duration-300 shadow-md hover:shadow-[0_4px_25px_rgba(229,9,20,0.3)] hover:-translate-y-0.5 relative overflow-hidden group cursor-pointer shrink-0"
               {...resumeCursor}
             >
               <span className="relative z-10">Resume</span>
@@ -206,7 +206,7 @@ function Hero({ data }) {
                 <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
               </svg>
               <div className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/15 to-transparent -left-[100%] group-hover:left-[100%] transition-all duration-1000 ease-out z-0" />
-            </a>
+            </button>
           </div>
         </motion.div>
 

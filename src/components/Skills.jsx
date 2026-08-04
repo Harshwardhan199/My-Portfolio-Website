@@ -78,7 +78,7 @@ function HoneycombCell({ skill, idx, rowLength, iconObj }) {
         <motion.img
           src={iconSrc}
           alt={`${skill.name} Icon`}
-          className="absolute left-1/2 top-1/2 w-[20px] h-[20px] min-[320px]:w-[32px] min-[320px]:h-[32px] min-[400px]:w-[45px] min-[400px]:h-[45px] object-contain select-none pointer-events-none theme-icon-invert"
+          className="absolute left-1/2 top-1/2 w-[20px] h-[20px] min-[320px]:w-[32px] min-[320px]:h-[32px] min-[400px]:w-[45px] min-[400px]:h-[45px] object-contain select-none pointer-events-none"
           loading="lazy"
           animate={{
             x: "-50%",
@@ -138,7 +138,7 @@ function Skills({ data, icons = [] }) {
   return (
     <section
       id="skills"
-      className="w-full py-16 min-[400px]:py-20 px-2 min-[360px]:px-4 text-text-primary flex flex-col items-center justify-center font-sans scroll-mt-[10vh] transition-colors duration-300 relative z-20 overflow-hidden"
+      className="w-full py-16 min-[400px]:py-20 px-2 min-[360px]:px-4 text-text-primary flex flex-col items-center justify-center font-sans scroll-mt-24 lg:scroll-mt-[12vh] transition-colors duration-300 relative z-20 overflow-hidden"
     >
       <div className="w-full max-w-[1100px] flex flex-col items-center">
         <motion.h2
@@ -222,7 +222,7 @@ function Skills({ data, icons = [] }) {
                                   <img
                                     src={iconSrc}
                                     alt={`${skill.name} Icon`}
-                                    className="w-full h-full object-contain select-none theme-icon-invert"
+                                    className="w-full h-full object-contain select-none"
                                     loading="lazy"
                                   />
                                 ) : (

@@ -56,7 +56,7 @@ function Experience({ data }) {
   return (
     <section
       id="experience"
-      className="w-full py-14 min-[400px]:py-20 px-3 min-[400px]:px-4 text-text-primary flex flex-col items-center justify-center font-sans scroll-mt-[10vh] transition-colors duration-300 relative z-20"
+      className="w-full py-14 min-[400px]:py-20 px-3 min-[400px]:px-4 text-text-primary flex flex-col items-center justify-center font-sans scroll-mt-24 lg:scroll-mt-[12vh] transition-colors duration-300 relative z-20"
     >
       <div className="w-full max-w-[1100px] flex flex-col items-center">
         {/* Section Header */}
