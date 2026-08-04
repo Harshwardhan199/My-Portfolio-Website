@@ -28,7 +28,7 @@ const chunkSkillsIntoHoneycombRows = (items) => {
 };
 
 // Local Component to handle isolated cell hover, tilt, icon upward transition and text reveal animations
-function HoneycombCell({ skill, idx, rowIndex, rowLength, iconObj, activeWaveStep }) {
+function HoneycombCell({ skill, idx, rowIndex, rowLength, iconObj, activeWaveStep, isMobile }) {
   const [isHovered, setIsHovered] = useState(false);
 
   // Calculate cell step in the center-first button click ripple sequence:
@@ -49,7 +49,8 @@ function HoneycombCell({ skill, idx, rowIndex, rowLength, iconObj, activeWaveSte
 
   const cellStep = getCellWaveStep();
   const isWaveActiveCell = activeWaveStep === cellStep;
-  const activeHover = isHovered || isWaveActiveCell;
+  const isTransformActive = isHovered || isWaveActiveCell;
+  const isContentRevealed = isMobile || isHovered || isWaveActiveCell;
 
   // Directional movement mapping (reduced by 30% overall):
   const getDirectionalShift = () => {
@@ -59,8 +60,8 @@ function HoneycombCell({ skill, idx, rowIndex, rowLength, iconObj, activeWaveSte
       if (idx === 2) return { x: 11, y: 0 };   // [+1] move toward right
     }
     if (rowLength === 2) {
-      if (idx === 0) return { x: -10, y: 10 }; // [-2] move away from [0], diagonally (left-down)
-      if (idx === 1) return { x: 10, y: 10 };  // [+2] move away from [0], diagonally (right-down)
+      if (idx === 0) return { x: -7, y: 12 };  // [-2] move away from [0] diagonally (down-left)
+      if (idx === 1) return { x: 7, y: 12 };   // [+2] move away from [0] diagonally (down-right)
     }
     return { x: 0, y: 13 };                    // [00] move toward bottom
   };
@@ -77,16 +78,18 @@ function HoneycombCell({ skill, idx, rowIndex, rowLength, iconObj, activeWaveSte
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       animate={{
-        scale: activeHover ? 1.06 : 1,
-        x: activeHover ? shift.x : 0,
-        y: activeHover ? shift.y : 0,
-        zIndex: activeHover ? 40 : 1,
+        scale: isTransformActive ? 1.06 : 1,
+        x: isTransformActive ? shift.x : 0,
+        y: isTransformActive ? shift.y : 0,
+        zIndex: isTransformActive ? 40 : 1,
       }}
       transition={animTransition}
       className={`skill flex items-center justify-center relative w-[60px] h-[69px] min-[320px]:w-[92px] min-[320px]:h-[106px] min-[360px]:w-[110px] min-[360px]:h-[126px] min-[400px]:w-[130px] min-[400px]:h-[150px] overflow-visible group cursor-pointer select-none shrink-0 transform-gpu transition-shadow duration-300 ${
-        activeHover
-          ? "[filter:drop-shadow(0_6px_18px_rgba(229,9,20,0.22))]"
-          : "hover:[filter:drop-shadow(0_4px_12px_rgba(229,9,20,0.15))]"
+        isMobile
+          ? ""
+          : isContentRevealed
+            ? "[filter:drop-shadow(0_6px_18px_rgba(229,9,20,0.22))]"
+            : "hover:[filter:drop-shadow(0_4px_12px_rgba(229,9,20,0.15))]"
       }`}
     >
       {/* Hexagon SVG Background */}
@@ -96,8 +99,10 @@ function HoneycombCell({ skill, idx, rowIndex, rowLength, iconObj, activeWaveSte
       >
         <polygon
           points="50,0 100,25 100,75 50,100 0,75 0,25"
-          className={`fill-card-dark stroke-[2.5] transition-colors duration-300 ${
-            activeHover
+          className={`fill-card-dark transition-colors duration-300 ${
+            isMobile ? "stroke-[1]" : "stroke-[1.8]"
+          } ${
+            isTransformActive || (!isMobile && isContentRevealed)
               ? "stroke-brand-red/80"
               : "stroke-border-theme group-hover:stroke-brand-red/50"
           }`}
@@ -114,8 +119,8 @@ function HoneycombCell({ skill, idx, rowIndex, rowLength, iconObj, activeWaveSte
             loading="eager"
             initial={false}
             animate={{
-              y: activeHover ? "-26px" : "0px",
-              scale: activeHover ? 0.6 : 1,
+              y: isContentRevealed ? "-26px" : "0px",
+              scale: isContentRevealed ? 0.6 : 1,
             }}
             transition={animTransition}
           />
@@ -124,8 +129,8 @@ function HoneycombCell({ skill, idx, rowIndex, rowLength, iconObj, activeWaveSte
             className="text-xs min-[360px]:text-xl font-bold text-brand-red select-none"
             initial={false}
             animate={{
-              y: activeHover ? "-26px" : "0px",
-              scale: activeHover ? 0.65 : 1,
+              y: isContentRevealed ? "-26px" : "0px",
+              scale: isContentRevealed ? 0.65 : 1,
             }}
             transition={animTransition}
           >
@@ -139,9 +144,9 @@ function HoneycombCell({ skill, idx, rowIndex, rowLength, iconObj, activeWaveSte
         initial={false}
         className="absolute bottom-[12px] min-[320px]:bottom-[24px] min-[400px]:bottom-[42px] left-0 right-0 flex flex-col items-center text-center px-1 min-[360px]:px-2 pointer-events-none opacity-0"
         animate={{
-          opacity: activeHover ? 1 : 0,
-          scale: activeHover ? 1 : 0.88,
-          y: activeHover ? 0 : 6,
+          opacity: isContentRevealed ? 1 : 0,
+          scale: isContentRevealed ? 1 : 0.88,
+          y: isContentRevealed ? 0 : 6,
         }}
         transition={animTransition}
       >
@@ -159,12 +164,13 @@ function HoneycombCell({ skill, idx, rowIndex, rowLength, iconObj, activeWaveSte
 }
 
 // Local Component to handle compact rectangular skill card hover & wave animations
-function RectangularCardCell({ skill, idx, totalItems, iconObj, activeWaveStep }) {
+function RectangularCardCell({ skill, idx, totalItems, iconObj, activeWaveStep, isMobile }) {
   const [isHovered, setIsHovered] = useState(false);
   const centerIdx = Math.floor(totalItems / 2);
   const cellStep = Math.abs(idx - centerIdx);
   const isWaveActiveCell = activeWaveStep === cellStep;
-  const activeHover = isHovered || isWaveActiveCell;
+  const isTransformActive = isHovered || isWaveActiveCell;
+  const activeHover = isMobile || isTransformActive;
 
   const iconSrc = iconObj?.url || skill.icon;
   const springConfig = { type: "spring", stiffness: 220, damping: 20 };
@@ -177,14 +183,18 @@ function RectangularCardCell({ skill, idx, totalItems, iconObj, activeWaveStep }
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       animate={{
-        scale: activeHover ? 1.05 : 1,
-        y: activeHover ? -6 : 0,
+        scale: isTransformActive ? 1.05 : 1,
+        y: isTransformActive ? -6 : 0,
       }}
       transition={animTransition}
       className={`flex flex-col items-center justify-center w-[clamp(115px,38vw,180px)] h-[135px] min-[360px]:h-[165px] min-[500px]:h-[180px] p-3 bg-card-dark border rounded-xl shadow-sm transition-colors duration-300 cursor-default transform-gpu ${
-        activeHover
-          ? "border-brand-red/70 shadow-[0_8px_25px_rgba(229,9,20,0.18)]"
-          : "border-border-theme hover:border-brand-red/30"
+        isMobile
+          ? isTransformActive
+            ? "border-brand-red/70"
+            : "border-border-theme"
+          : activeHover
+            ? "border-brand-red/70 shadow-[0_8px_25px_rgba(229,9,20,0.18)]"
+            : "border-border-theme hover:border-brand-red/30"
       }`}
     >
       <div className="w-6 h-6 min-[360px]:w-8 min-[360px]:h-8 mb-2 flex items-center justify-center shrink-0">
@@ -222,6 +232,7 @@ function SkillCategoryBlock({
   isWaveActiveSection,
   onSectionEnter,
   onSectionWaveComplete,
+  isMobile,
 }) {
   const [activeWaveStep, setActiveWaveStep] = useState(-1);
   const hasTriggeredRef = useRef(false);
@@ -286,6 +297,7 @@ function SkillCategoryBlock({
               totalItems={filteredSkills.length}
               iconObj={iconMap.get(skill.iconId)}
               activeWaveStep={activeWaveStep}
+              isMobile={isMobile}
             />
           ))}
         </motion.div>
@@ -310,6 +322,7 @@ function SkillCategoryBlock({
                   rowLength={row.length}
                   iconObj={iconMap.get(skill.iconId)}
                   activeWaveStep={activeWaveStep}
+                  isMobile={isMobile}
                 />
               ))}
             </motion.div>
@@ -325,6 +338,16 @@ function Skills({ data, icons = [] }) {
   const [visibleCatSet, setVisibleCatSet] = useState(() => new Set());
   const [completedCatSet, setCompletedCatSet] = useState(() => new Set());
   const [activeWaveCatIndex, setActiveWaveCatIndex] = useState(-1);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.matchMedia("(max-width: 639px)").matches);
+    };
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
 
   const activeSkillsData = data?.length ? data : defaultSkillsData;
 
@@ -423,6 +446,7 @@ function Skills({ data, icons = [] }) {
                 isWaveActiveSection={activeWaveCatIndex === catIndex}
                 onSectionEnter={handleSectionEnter}
                 onSectionWaveComplete={handleSectionWaveComplete}
+                isMobile={isMobile}
               />
             ))}
           </AnimatePresence>
@@ -433,5 +457,3 @@ function Skills({ data, icons = [] }) {
 }
 
 export default Skills;
-
-
