@@ -100,7 +100,7 @@ function HoneycombCell({ skill, idx, rowIndex, rowLength, iconObj, activeWaveSte
         <polygon
           points="50,0 100,25 100,75 50,100 0,75 0,25"
           className={`fill-card-dark transition-colors duration-300 ${
-            isMobile ? "stroke-[1]" : "stroke-[1.8]"
+            isMobile ? "stroke-[1]" : "stroke-[1.35]"
           } ${
             isTransformActive || (!isMobile && isContentRevealed)
               ? "stroke-brand-red/80"
