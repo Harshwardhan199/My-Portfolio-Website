@@ -63,13 +63,16 @@ export async function request(endpoint, options = {}) {
   return data;
 }
 
-export const apiClient = {
+export const api = {
   get: (endpoint, options = {}) => request(endpoint, { ...options, method: "GET" }),
   post: (endpoint, body = {}, options = {}) =>
     request(endpoint, { ...options, method: "POST", body: JSON.stringify(body) }),
   put: (endpoint, body = {}, options = {}) =>
     request(endpoint, { ...options, method: "PUT", body: JSON.stringify(body) }),
   del: (endpoint, options = {}) => request(endpoint, { ...options, method: "DELETE" }),
+  publish: (sectionName = "all") => request("/.netlify/functions/publish", { method: "POST", body: JSON.stringify({ sectionName }) }),
+  seed: () => request("/.netlify/functions/seed", { method: "POST" }),
 };
 
-export default apiClient;
+export const apiClient = api;
+export default api;

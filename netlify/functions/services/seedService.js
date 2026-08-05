@@ -1,5 +1,5 @@
 import { FieldValue } from "firebase-admin/firestore";
-import { getFirebaseAdmin } from "../utils/firebaseAdmin.js";
+import { getFirebaseAdmin } from "../shared/firebase.js";
 import { publishAll } from "./publishService.js";
 
 const skillsData = [

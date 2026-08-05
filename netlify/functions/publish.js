@@ -1,7 +1,5 @@
-import { handleCorsPreflight } from "./utils/cors.js";
-import { successResponse, errorResponse } from "./utils/responses.js";
-import { verifyToken } from "./utils/verifyToken.js";
-import { requireAdmin } from "./utils/requireAdmin.js";
+import { handleCorsPreflight, successResponse, errorResponse } from "./shared/responses.js";
+import { verifyToken, requireAdmin } from "./shared/auth.js";
 import { publishSection, publishAll, ALLOWED_SECTIONS } from "./services/publishService.js";
 
 export const handler = async (event, context) => {

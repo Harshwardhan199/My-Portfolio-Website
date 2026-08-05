@@ -1,5 +1,5 @@
 import { FieldValue } from "firebase-admin/firestore";
-import { getFirebaseAdmin } from "../utils/firebaseAdmin.js";
+import { getFirebaseAdmin } from "../shared/firebase.js";
 
 const SECTION_MAP = {
   hero: { type: "doc", draftPath: ["draft_portfolio", "hero"], pubPath: ["portfolio", "hero"] },
