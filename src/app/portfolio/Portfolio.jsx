@@ -7,6 +7,7 @@ import Experience from "./components/Experience";
 import Skills from "./components/Skills";
 import Projects from "./components/Projects";
 import Contact from "./components/Contact";
+import LoadingOverlay from "./components/LoadingOverlay";
 import { CursorProvider } from "./cursor/CursorContext";
 import CustomCursor from "./cursor/CustomCursor";
 import { usePortfolioData } from "./hooks/usePortfolioData";
@@ -52,6 +53,9 @@ export default function Portfolio({ isPreview = false }) {
     <CursorProvider>
       {/* Custom cursor overlay (portfolio view only) */}
       <CustomCursor />
+
+      {/* Initial portfolio data loading overlay — disappears as soon as data.loading = false */}
+      <LoadingOverlay isLoading={data.loading} />
 
       {/* Preview Mode Banner */}
       {isPreview && (
