@@ -4,14 +4,28 @@
   functions = "netlify/functions"
 
 [[redirects]]
+  from = "/api/admin/publish"
+  to = "/.netlify/functions/publish"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/api/admin/seed"
+  to = "/.netlify/functions/seed"
+  status = 200
+  force = true
+
+[[redirects]]
   from = "/api/admin/*"
   to = "/.netlify/functions/:splat"
   status = 200
+  force = true
 
 [[redirects]]
   from = "/api/*"
   to = "/.netlify/functions/:splat"
   status = 200
+  force = true
 
 [[redirects]]
   from = "/*"

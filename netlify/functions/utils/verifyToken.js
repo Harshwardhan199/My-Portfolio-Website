@@ -2,11 +2,19 @@ import { getFirebaseAdmin } from "./firebaseAdmin.js";
 
 /**
  * Extracts and verifies Firebase ID token from HTTP Authorization header.
- * @param {object} event - Netlify function event
+ * @param {object} event - Netlify function event or Request object
  * @returns {Promise<import("firebase-admin/auth").DecodedIdToken>}
  */
 export async function verifyToken(event) {
-  const authHeader = event.headers.authorization || event.headers.Authorization;
+  let authHeader = null;
+
+  if (event.headers) {
+    if (typeof event.headers.get === "function") {
+      authHeader = event.headers.get("authorization") || event.headers.get("Authorization");
+    } else {
+      authHeader = event.headers.authorization || event.headers.Authorization || event.headers.AUTHORIZATION;
+    }
+  }
 
   if (!authHeader || !authHeader.startsWith("Bearer ")) {
     const err = new Error("Missing or malformed Authorization header");
