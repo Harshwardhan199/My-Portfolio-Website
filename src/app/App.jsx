@@ -1,10 +1,10 @@
 import { useEffect } from "react";
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
-import { AuthProvider } from "./hooks/useAuth";
-import AnimatedBackground from "./background/AnimatedBackground";
-import Toast from "./components/Toast";
-import Portfolio from "./pages/Portfolio";
-import Admin from "./pages/Admin";
+import { AuthProvider } from "../hooks/useAuth";
+import AnimatedBackground from "../background/AnimatedBackground";
+import Toast from "../home/components/Toast";
+import Portfolio from "../home/pages/Portfolio";
+import Admin from "../admin/Admin";
 
 function MainContent() {
   const location = useLocation();

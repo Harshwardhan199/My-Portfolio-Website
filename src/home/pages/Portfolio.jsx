@@ -7,11 +7,11 @@ import Experience from "../components/Experience";
 import Skills from "../components/Skills";
 import Projects from "../components/Projects";
 import Contact from "../components/Contact";
-import { CursorProvider } from "../cursor/CursorContext";
-import CustomCursor from "../cursor/CustomCursor";
+import { CursorProvider } from "../../cursor/CursorContext";
+import CustomCursor from "../../cursor/CustomCursor";
 import { usePortfolioData } from "../hooks/usePortfolioData";
-import { useAdminAuth } from "../hooks/useAdminAuth";
-import { logout } from "../firebase/firebase";
+import { useAdminAuth } from "../../hooks/useAdminAuth";
+import { logout } from "../../firebase/firebase";
 
 export default function Portfolio({ isPreview = false }) {
   const navigate = useNavigate();

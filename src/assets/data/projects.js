@@ -1,8 +1,8 @@
-import sageAiImg from "../assets/images/SageAI.png";
-import portfolioImg from "../assets/images/Portfolio-Website.png";
-import brandSightImg from "../assets/images/BrandSight.png";
-import foodiesImg from "../assets/images/foodies.png";
-import threatVistaImg from "../assets/images/Threat-Vista.png";
+import sageAiImg from "../images/SageAI.png";
+import portfolioImg from "../images/Portfolio-Website.png";
+import brandSightImg from "../images/BrandSight.png";
+import foodiesImg from "../images/foodies.png";
+import threatVistaImg from "../images/Threat-Vista.png";
 
 export const projectsData = [
   {

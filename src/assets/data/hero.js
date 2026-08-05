@@ -1,5 +1,5 @@
-import profileImg from "../assets/images/Profile.png";
-import resumePdf from "../assets/HarshwardhanSaini.pdf";
+import profileImg from "../images/Profile.png";
+import resumePdf from "../documents/HarshwardhanSaini.pdf";
 
 export const defaultHeroData = {
   name: "Harshwardhan Saini",

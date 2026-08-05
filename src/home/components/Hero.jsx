@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { defaultHeroData } from "../data/hero";
-import { useCursor } from "../cursor/useCursor";
-import { openPdfInNewTab } from "../utils/pdfUtils";
+import { defaultHeroData } from "../../assets/data/hero";
+import { useCursor } from "../../cursor/useCursor";
+import { openPdfInNewTab } from "../../utils/pdfUtils";
 
 const orbitingBadges = [
   {

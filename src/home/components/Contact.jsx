@@ -1,11 +1,11 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import phoneIcon from "../assets/images/phone.png";
-import nameIcon from "../assets/images/name.png";
-import emailIcon from "../assets/images/email.png";
-import messageIcon from "../assets/images/message.png";
-import { defaultContactData, defaultSocialsData } from "../data/contact";
-import { useCursor } from "../cursor/useCursor";
+import phoneIcon from "../../assets/images/phone.png";
+import nameIcon from "../../assets/images/name.png";
+import emailIcon from "../../assets/images/email.png";
+import messageIcon from "../../assets/images/message.png";
+import { defaultContactData, defaultSocialsData } from "../../assets/data/contact";
+import { useCursor } from "../../cursor/useCursor";
 
 function Contact({ data, socials }) {
   const inputCursor = useCursor("input");

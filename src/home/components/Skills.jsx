@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { skillsData as defaultSkillsData } from "../data/skills";
+import { skillsData as defaultSkillsData } from "../../assets/data/skills";
 
 const filterCategories = [
   "All",

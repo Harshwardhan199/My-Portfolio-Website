@@ -1,23 +1,23 @@
 import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence, useScroll, useSpring } from "framer-motion";
-import { CursorProvider } from "../cursor/CursorContext";
-import CustomCursor from "../cursor/CustomCursor";
-import AnimatedBackground from "../background/AnimatedBackground";
+import { CursorProvider } from "../../cursor/CursorContext";
+import CustomCursor from "../../cursor/CustomCursor";
+import AnimatedBackground from "../../background/AnimatedBackground";
 
 // Asset Imports
-import profileImg from "../assets/images/Profile.png";
-import resumePdf from "../assets/HarshwardhanSaini.pdf";
-import gitIcon from "../assets/images/Git.png";
-import phoneIcon from "../assets/images/phone.png";
-import nameIcon from "../assets/images/name.png";
-import emailIcon from "../assets/images/email.png";
-import messageIcon from "../assets/images/message.png";
+import profileImg from "../../assets/images/Profile.png";
+import resumePdf from "../../assets/documents/HarshwardhanSaini.pdf";
+import gitIcon from "../../assets/images/Git.png";
+import phoneIcon from "../../assets/images/phone.png";
+import nameIcon from "../../assets/images/name.png";
+import emailIcon from "../../assets/images/email.png";
+import messageIcon from "../../assets/images/message.png";
 
-import sageAiImg from "../assets/images/SageAI.png";
-import portfolioImg from "../assets/images/Portfolio-Website.png";
-import brandSightImg from "../assets/images/BrandSight.png";
-import foodiesImg from "../assets/images/foodies.png";
-import threatVistaImg from "../assets/images/Threat-Vista.png";
+import sageAiImg from "../../assets/images/SageAI.png";
+import portfolioImg from "../../assets/images/Portfolio-Website.png";
+import brandSightImg from "../../assets/images/BrandSight.png";
+import foodiesImg from "../../assets/images/foodies.png";
+import threatVistaImg from "../../assets/images/Threat-Vista.png";
 
 // ==========================================
 // DATA CONFIGURATIONS

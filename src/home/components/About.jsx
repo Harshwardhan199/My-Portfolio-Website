@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
-import { defaultAboutCards } from "../data/about";
-import { useCursor } from "../cursor/useCursor";
+import { defaultAboutCards } from "../../assets/data/about";
+import { useCursor } from "../../cursor/useCursor";
 
 function About({ data }) {
   const cardCursor = useCursor("card");

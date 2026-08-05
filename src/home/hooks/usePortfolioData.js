@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
 import { doc, onSnapshot, collection, query, orderBy } from "firebase/firestore";
-import { db } from "../firebase/firebase";
-import { experienceData } from "../data/experience";
-import { projectsData } from "../data/projects";
-import { skillsData } from "../data/skills";
+import { db } from "../../firebase/firebase";
+import { experienceData } from "../../assets/data/experience";
+import { projectsData } from "../../assets/data/projects";
+import { skillsData } from "../../assets/data/skills";
 
 /**
  * Custom hook to load portfolio section data from published collections (default)

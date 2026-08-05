@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { useCursor } from "../cursor/useCursor";
-import { projectsData as defaultProjectsData } from "../data/projects";
+import { useCursor } from "../../cursor/useCursor";
+import { projectsData as defaultProjectsData } from "../../assets/data/projects";
 
 const containerVariants = {
   hidden: {},

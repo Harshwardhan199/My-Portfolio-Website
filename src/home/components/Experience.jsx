@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
-import { experienceData as defaultExperienceData } from "../data/experience";
-import { useCursor } from "../cursor/useCursor";
+import { experienceData as defaultExperienceData } from "../../assets/data/experience";
+import { useCursor } from "../../cursor/useCursor";
 
 const getRespIcon = (idx) => {
   const icons = ["🤖", "⚡", "💻", "🧩", "📊", "🧪", "🚀"];
