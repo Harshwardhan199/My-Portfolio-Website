@@ -491,7 +491,7 @@ export default function FileUpload({
                 title="Click image to edit crop or change photo"
               >
                 <img
-                  src={currentUrl}
+                  src={currentUrl || null}
                   alt={label}
                   className="w-full h-full object-cover rounded-full select-none"
                 />
@@ -548,7 +548,7 @@ export default function FileUpload({
                   </div>
                 ) : (
                   <img
-                    src={currentUrl}
+                    src={currentUrl || null}
                     alt={label}
                     className="w-full h-full min-h-[160px] object-cover object-center"
                   />

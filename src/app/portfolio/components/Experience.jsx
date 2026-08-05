@@ -1,5 +1,4 @@
 import { motion } from "framer-motion";
-import { experienceData as defaultExperienceData } from "../../../assets/data/experience";
 import { useCursor } from "../cursor/useCursor";
 
 const getRespIcon = (idx) => {
@@ -15,7 +14,7 @@ const defaultCoreTech = [
 
 function Experience({ data }) {
   const cardCursor = useCursor("button");
-  const activeExperience = data?.length ? data : defaultExperienceData;
+  const activeExperience = data?.length ? data : [];
 
   return (
     <section

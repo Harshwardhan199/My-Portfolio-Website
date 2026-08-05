@@ -1,10 +1,9 @@
 import { motion } from "framer-motion";
-import { defaultAboutCards } from "../../../assets/data/about";
 import { useCursor } from "../cursor/useCursor";
 
 function About({ data }) {
   const cardCursor = useCursor("card");
-  const activeCards = data?.cards?.length ? data.cards : defaultAboutCards;
+  const activeCards = data?.cards?.length ? data.cards : [];
 
   const containerVariants = {
     hidden: { opacity: 0 },

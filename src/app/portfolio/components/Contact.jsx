@@ -1,10 +1,9 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import phoneIcon from "../../../assets/images/phone.png";
-import nameIcon from "../../../assets/images/name.png";
-import emailIcon from "../../../assets/images/email.png";
-import messageIcon from "../../../assets/images/message.png";
-import { defaultContactData, defaultSocialsData } from "../../../assets/data/contact";
+import phoneIcon from "../../../assets/phone.png";
+import nameIcon from "../../../assets/name.png";
+import emailIcon from "../../../assets/email.png";
+import messageIcon from "../../../assets/message.png";
 import { useCursor } from "../cursor/useCursor";
 
 function Contact({ data, socials }) {
@@ -17,13 +16,13 @@ function Contact({ data, socials }) {
     error: null,
   });
 
-  const contact = data || defaultContactData;
-  const activeSocials = socials?.items?.length ? socials.items : defaultSocialsData.items;
+  const contact = data || {};
+  const activeSocials = socials?.items?.length ? socials.items : [];
 
-  const email = contact.email || defaultContactData.email;
-  const phone = contact.phone || defaultContactData.phone;
-  const locationText = contact.location || defaultContactData.location;
-  const isFormEnabled = contact.formEnabled ?? defaultContactData.formEnabled;
+  const email = contact.email || "";
+  const phone = contact.phone || "";
+  const locationText = contact.location || "";
+  const isFormEnabled = contact.formEnabled ?? true;
 
   const handleSubmit = (e) => {
     e.preventDefault();

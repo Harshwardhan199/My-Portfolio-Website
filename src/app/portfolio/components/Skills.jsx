@@ -1,6 +1,5 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { skillsData as defaultSkillsData } from "../../../assets/data/skills";
 
 const filterCategories = [
   "All",
@@ -347,7 +346,7 @@ function Skills({ data, icons = [] }) {
     return () => window.removeEventListener("resize", checkMobile);
   }, []);
 
-  const activeSkillsData = data?.length ? data : defaultSkillsData;
+  const activeSkillsData = data?.length ? data : [];
 
   const iconMap = new Map();
   icons.forEach((ic) => iconMap.set(ic.id, ic));

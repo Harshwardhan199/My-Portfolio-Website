@@ -1,6 +1,5 @@
 import { motion } from "framer-motion";
 import { useCursor } from "../cursor/useCursor";
-import { projectsData as defaultProjectsData } from "../../../assets/data/projects";
 
 const containerVariants = {
   hidden: {},
@@ -26,7 +25,7 @@ function Projects({ data, icons = [] }) {
   const demoCursor = useCursor("button");
   const githubCursor = useCursor("github");
 
-  const activeProjects = data?.length ? data : defaultProjectsData;
+  const activeProjects = data?.length ? data : [];
 
   const iconMap = new Map();
   icons.forEach((ic) => iconMap.set(ic.id, ic));

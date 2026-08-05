@@ -1,13 +1,10 @@
 import { useState, useEffect } from "react";
 import { doc, onSnapshot, collection, query, orderBy } from "firebase/firestore";
 import { db } from "../../../firebase/firebase";
-import { experienceData } from "../../../assets/data/experience";
-import { projectsData } from "../../../assets/data/projects";
-import { skillsData } from "../../../assets/data/skills";
 
 /**
  * Custom hook to load portfolio section data from published collections (default)
- * or draft collections (when isPreview is true). Fallbacks to local data if Firestore is unpopulated.
+ * or draft collections (when isPreview is true).
  */
 export function usePortfolioData(isPreview = false) {
   const prefix = isPreview ? "draft_" : "";
@@ -53,31 +50,19 @@ export function usePortfolioData(isPreview = false) {
     // 6. Subscribe to Projects
     const qProjects = query(collection(db, `${prefix}projects`), orderBy("order", "asc"));
     const unsubProjects = onSnapshot(qProjects, (snap) => {
-      if (!snap.empty) {
-        setProjects(snap.docs.map((d) => ({ id: d.id, ...d.data() })));
-      } else {
-        setProjects(projectsData);
-      }
+      setProjects(snap.docs.map((d) => ({ id: d.id, ...d.data() })));
     });
 
     // 7. Subscribe to Skills
     const qSkills = query(collection(db, `${prefix}skills`), orderBy("order", "asc"));
     const unsubSkills = onSnapshot(qSkills, (snap) => {
-      if (!snap.empty) {
-        setSkills(snap.docs.map((d) => ({ id: d.id, ...d.data() })));
-      } else {
-        setSkills(skillsData);
-      }
+      setSkills(snap.docs.map((d) => ({ id: d.id, ...d.data() })));
     });
 
     // 8. Subscribe to Experience
     const qExp = query(collection(db, `${prefix}experience`), orderBy("order", "asc"));
     const unsubExp = onSnapshot(qExp, (snap) => {
-      if (!snap.empty) {
-        setExperience(snap.docs.map((d) => ({ id: d.id, ...d.data() })));
-      } else {
-        setExperience(experienceData);
-      }
+      setExperience(snap.docs.map((d) => ({ id: d.id, ...d.data() })));
     });
 
     // 9. Subscribe to Shared Icons

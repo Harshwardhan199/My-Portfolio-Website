@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { defaultHeroData } from "../../../assets/data/hero";
 import { useCursor } from "../cursor/useCursor";
 import { openPdfInNewTab } from "../utils/pdfUtils";
+import defaultProfileImg from "../../../assets/OIP.jpeg";
 
 const orbitingBadges = [
   {
@@ -55,14 +55,14 @@ function Hero({ data }) {
   const linkedinCursor = useCursor("github");
   const githubCursor = useCursor("github");
 
-  const hero = data || defaultHeroData;
-  const name = hero.name || defaultHeroData.name;
-  const activeRoles = hero.roles?.length ? hero.roles : defaultHeroData.roles;
-  const activeSubtexts = hero.subtexts?.length ? hero.subtexts : defaultHeroData.subtexts;
-  const avatarSrc = hero.profileImage || defaultHeroData.profileImage;
-  const resumeHref = hero.resumeUrl || defaultHeroData.resumeUrl;
-  const githubHref = hero.github || defaultHeroData.github;
-  const linkedinHref = hero.linkedin || defaultHeroData.linkedin;
+  const hero = data || {};
+  const name = hero.name || "";
+  const activeRoles = hero.roles?.length ? hero.roles : [];
+  const activeSubtexts = hero.subtexts?.length ? hero.subtexts : [];
+  const avatarSrc = hero.profileImage || defaultProfileImg;
+  const resumeHref = hero.resumeUrl || "";
+  const githubHref = hero.github || "";
+  const linkedinHref = hero.linkedin || "";
 
   // Typing Animation Loop
   const [roleIdx, setRoleIdx] = useState(0);
@@ -223,7 +223,7 @@ function Hero({ data }) {
             <div className="w-[calc(100%-8px)] h-[calc(100%-8px)] rounded-full bg-bg-dark p-1.5 relative z-10 flex items-center justify-center">
               <img
                 src={avatarSrc}
-                alt={`${name} Profile`}
+                alt={`${name || "Profile"} Avatar`}
                 className="w-full h-full rounded-full object-cover shadow-[0_4px_30px_rgba(0,0,0,0.35)] select-none pointer-events-none group-hover:scale-[1.01] transition-transform duration-300"
                 loading="eager"
               />
