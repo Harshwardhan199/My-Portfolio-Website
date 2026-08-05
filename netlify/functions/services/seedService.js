@@ -1,9 +1,115 @@
 import { FieldValue } from "firebase-admin/firestore";
 import { getFirebaseAdmin } from "../utils/firebaseAdmin.js";
-import { experienceData } from "../../../src/assets/data/experience.js";
-import { projectsData } from "../../../src/assets/data/projects.js";
-import { skillsData } from "../../../src/assets/data/skills.js";
 import { publishAll } from "./publishService.js";
+
+const skillsData = [
+  {
+    category: "Programming",
+    items: [
+      { name: "JavaScript", description: "Dynamic Web Scripting", icon: "https://img.icons8.com/?size=100&id=39854&format=png&color=ff0000" },
+      { name: "Python", description: "Scripting & ML", icon: "https://img.icons8.com/?size=100&id=12592&format=png&color=ff0000" },
+      { name: "TypeScript", description: "Typed JavaScript", icon: "https://img.icons8.com/?size=100&id=cHBUT9SmrD2V&format=png&color=ff0000" },
+    ],
+  },
+  {
+    category: "Frontend",
+    items: [
+      { name: "HTML", description: "Web Markup", icon: "https://img.icons8.com/?size=100&id=23028&format=png&color=ff0000" },
+      { name: "CSS", description: "Web Styling", icon: "https://img.icons8.com/?size=100&id=38272&format=png&color=ff0000" },
+      { name: "React", description: "Component-Based UI", icon: "https://img.icons8.com/?size=100&id=w4RSxcrpwrzy&format=png&color=ff0000" },
+      { name: "Next.js", description: "SSR React Framework", icon: "https://img.icons8.com/?size=100&id=gwR0hbBi5JeZ&format=png&color=ff0000" },
+      { name: "TailwindCSS", description: "Utility-First Styling", icon: "https://img.icons8.com/?size=100&id=UpSCHTwpywad&format=png&color=ff0000" },
+    ],
+  },
+  {
+    category: "Backend",
+    items: [
+      { name: "Node.js", description: "Server Runtime", icon: "https://img.icons8.com/?size=100&id=t9oCxEN7McHZ&format=png&color=ff0000" },
+      { name: "Express", description: "Micro-framework", icon: "https://img.icons8.com/?size=100&id=XIkDynN7Uo6f&format=png&color=ff0000" },
+      { name: "Django", description: "Robust Python Backend", icon: "https://img.icons8.com/?size=100&id=37o3DqV429ra&format=png&color=ff0000" },
+      { name: "Flask", description: "Micro Web Server", icon: "https://img.icons8.com/?size=100&id=AqYCfGyGXlO7&format=png&color=ff0000" },
+      { name: "FastAPI", description: "High-Performance APIs", icon: "https://img.icons8.com/?size=100&id=122187&format=png&color=ff0000" },
+    ],
+  },
+  {
+    category: "AI & Agents",
+    items: [
+      { name: "LLM APIs", description: "Model Integration", icon: "https://img.icons8.com/?size=100&id=Q48f9JPNPu0E&format=png&color=ff0000" },
+      { name: "Dialogflow CX & ADK", description: "Conversational Agents", icon: "https://img.icons8.com/?size=100&id=37628&format=png&color=ff0000" },
+      { name: "MCP", description: "Model Context Protocol", icon: "https://img.icons8.com/?size=100&id=rfIn8nl8UUXz&format=png&color=ff0000" },
+      { name: "Prompt Engineering", description: "Context Optimization", icon: "https://img.icons8.com/?size=100&id=8420&format=png&color=ff0000" },
+      { name: "Agent Development", description: "Autonomous Workflows", icon: "https://img.icons8.com/?size=100&id=xT8d0Ap2E9Yt&format=png&color=ff0000" },
+    ],
+  },
+  {
+    category: "Cloud & DevOps",
+    items: [
+      { name: "AWS", description: "Cloud Hosting & Services", icon: "https://img.icons8.com/?size=100&id=AtEKkdldZfri&format=png&color=ff0000" },
+      { name: "GCP", description: "Google Cloud Platform", icon: "https://img.icons8.com/?size=100&id=20773&format=png&color=ff0000" },
+      { name: "Docker", description: "Containerization", icon: "https://img.icons8.com/?size=100&id=ckyutUQGU0PM&format=png&color=ff0000" },
+      { name: "Kubernetes", description: "Orchestration", icon: "https://img.icons8.com/?size=100&id=1hFR28gNL9Hy&format=png&color=ff0000" },
+      { name: "Terraform", description: "Infrastructure as Code", icon: "https://img.icons8.com/?size=100&id=F2ZeQQjwdIJp&format=png&color=ff0000" },
+      { name: "Jenkins & CI/CD", description: "Automation Server", icon: "https://img.icons8.com/?size=100&id=41129&format=png&color=ff0000" },
+    ],
+  },
+  {
+    category: "Databases & Architecture",
+    items: [
+      { name: "MySQL", description: "Relational Storage", icon: "https://img.icons8.com/?size=100&id=39858&format=png&color=ff0000" },
+      { name: "MongoDB", description: "Document Store", icon: "https://img.icons8.com/?size=100&id=Y9VdL7V5XPIc&format=png&color=ff0000" },
+      { name: "Redis", description: "In-Memory Cache", icon: "https://img.icons8.com/?size=100&id=dmAy2s25QyTr&format=png&color=ff0000" },
+      { name: "Kafka", description: "Event Streaming", icon: "https://img.icons8.com/?size=100&id=GcoBILXGLwFD&format=png&color=ff0000" },
+      { name: "Microservices", description: "Distributed Systems", icon: "https://img.icons8.com/?size=100&id=k3W8eBXojTKY&format=png&color=ff0000" },
+    ],
+  },
+];
+
+const projectsData = [
+  {
+    id: 1,
+    title: "National Cyber Threat Intelligence Hub",
+    description: "A centralized platform designed to monitor, aggregate, and analyze real-time cyber threats. Features ingestion of feed intelligence, indicators of compromise (IoC) visualization, and collaborative threat response frameworks.",
+    technologies: ["React", "Node.js", "Django", "Kafka", "Kubernetes", "Docker"],
+    github: "https://github.com/ktyangden/National-Cyber-Threat-Intelligence-Hub",
+    demo: "",
+    image: "",
+  },
+  {
+    id: 2,
+    title: "Sage AI",
+    description: "This is a MERN stack chatbot platform project with some additional features like Chats history organized in folder, reusable prompts and interactive quizzes.",
+    technologies: ["React", "Node.js", "FastAPI", "Redis", "MongoDB", "LLM"],
+    github: "https://github.com/Harshwardhan199/SageAI",
+    demo: "https://sage-ai-chatbot.vercel.app/",
+    image: "",
+  },
+  {
+    id: 3,
+    title: "BrandSight",
+    description: "This is a team project where we built a Brand Analyzer website which takes reviews from different sources (PlayStore, Maps) and analyzes them using our NLP API and gives suggestions to improve their service.",
+    technologies: ["React", "Node.js", "MongoDB", "NLP"],
+    github: "https://github.com/rakshitsawarn/brandsight",
+    demo: "",
+    image: "",
+  },
+];
+
+const experienceData = [
+  {
+    role: "DT Intern",
+    company: "GE Appliances (Haier)",
+    duration: "Jan 2026 – June 2026",
+    responsibilities: [
+      "Built AI conversational agents using ADK and Dialogflow CX for manufacturing data.",
+      "Developed backend APIs, cloud infrastructure, CI/CD pipelines and multi-agent orchestration.",
+      "Worked across Angular frontend, Agent Engine, MCP, Cloud Run, AWS Lambda and Google Cloud Functions.",
+      "Built reusable Angular components for internal AI agent UI.",
+      "Developed MCP-based natural language interface for BigQuery.",
+      "Built foundations for autonomous AI workflows including Cypress test generation.",
+      "Automated deployments using Terraform, Jenkins and GitHub Actions.",
+    ],
+  },
+];
 
 /**
  * Seeds initial portfolio data into Firestore draft collections and publishes immediately using Admin SDK.
