@@ -7,7 +7,7 @@ import { apiClient } from "../../api/apiClient";
  * @returns {Promise<object>}
  */
 export async function publishSection(sectionName, user) {
-  return await apiClient.post("/api/admin/publish", { sectionName });
+  return await apiClient.post("/.netlify/functions/publish", { sectionName });
 }
 
 /**
@@ -16,5 +16,5 @@ export async function publishSection(sectionName, user) {
  * @returns {Promise<object>}
  */
 export async function publishAll(user) {
-  return await apiClient.post("/api/admin/publish", { sectionName: "all" });
+  return await apiClient.post("/.netlify/functions/publish", { sectionName: "all" });
 }

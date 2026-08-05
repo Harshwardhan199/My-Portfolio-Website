@@ -28,5 +28,5 @@ export async function isFirestoreInitialized() {
  * @returns {Promise<object>}
  */
 export async function seedInitialData(user) {
-  return await apiClient.post("/api/admin/seed");
+  return await apiClient.post("/.netlify/functions/seed");
 }
