@@ -1,11 +1,14 @@
 /**
  * Verifies that the decoded token's email belongs to an authorized administrator.
- * Uses server-only environment variable FIREBASE_ADMIN_EMAIL.
+ * Uses server-side environment variables (FIREBASE_ADMIN_EMAIL, ADMIN_EMAIL, VITE_ADMIN_EMAIL).
  * @param {import("firebase-admin/auth").DecodedIdToken} decodedToken
  * @returns {boolean}
  */
 export function requireAdmin(decodedToken) {
-  const adminEmailConfig = process.env.FIREBASE_ADMIN_EMAIL || process.env.ADMIN_EMAIL;
+  const adminEmailConfig =
+    process.env.FIREBASE_ADMIN_EMAIL ||
+    process.env.ADMIN_EMAIL ||
+    process.env.VITE_ADMIN_EMAIL;
 
   if (!decodedToken || !decodedToken.email || !adminEmailConfig) {
     const err = new Error("Forbidden: Administrator privileges required");
