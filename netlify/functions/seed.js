@@ -1,8 +1,8 @@
-import { handleCorsPreflight } from "../utils/cors.js";
-import { successResponse, errorResponse } from "../utils/responses.js";
-import { verifyToken } from "../utils/verifyToken.js";
-import { requireAdmin } from "../utils/requireAdmin.js";
-import { seedInitialData } from "../services/seedService.js";
+import { handleCorsPreflight } from "./utils/cors.js";
+import { successResponse, errorResponse } from "./utils/responses.js";
+import { verifyToken } from "./utils/verifyToken.js";
+import { requireAdmin } from "./utils/requireAdmin.js";
+import { seedInitialData } from "./services/seedService.js";
 
 export async function handler(event, context) {
   // 1. Handle CORS preflight request
