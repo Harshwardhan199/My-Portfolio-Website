@@ -83,13 +83,12 @@ function HoneycombCell({ skill, idx, rowIndex, rowLength, iconObj, activeWaveSte
         zIndex: isTransformActive ? 40 : 1,
       }}
       transition={animTransition}
-      className={`skill flex items-center justify-center relative w-[60px] h-[69px] min-[320px]:w-[92px] min-[320px]:h-[106px] min-[360px]:w-[110px] min-[360px]:h-[126px] min-[400px]:w-[130px] min-[400px]:h-[150px] overflow-visible group cursor-pointer select-none shrink-0 transform-gpu transition-shadow duration-300 ${
-        isMobile
-          ? ""
-          : isTransformActive || isContentRevealed
-            ? "[filter:drop-shadow(0_4px_16px_rgba(229,9,20,0.12))]"
-            : ""
-      }`}
+      className={`skill flex items-center justify-center relative w-[60px] h-[69px] min-[320px]:w-[92px] min-[320px]:h-[106px] min-[360px]:w-[110px] min-[360px]:h-[126px] min-[400px]:w-[130px] min-[400px]:h-[150px] overflow-visible group cursor-pointer select-none shrink-0 transform-gpu transition-shadow duration-300 ${isMobile
+        ? ""
+        : isTransformActive || isContentRevealed
+          ? "[filter:drop-shadow(0_4px_16px_rgba(229,9,20,0.12))]"
+          : ""
+        }`}
     >
       {/* Hexagon SVG Background */}
       <svg
@@ -98,11 +97,10 @@ function HoneycombCell({ skill, idx, rowIndex, rowLength, iconObj, activeWaveSte
       >
         <polygon
           points="50,0 100,25 100,75 50,100 0,75 0,25"
-          className={`fill-card-dark stroke-[1] transition-colors duration-300 ${
-            isTransformActive || (!isMobile && isContentRevealed)
-              ? "stroke-brand-red/70"
-              : "stroke-border-theme group-hover:stroke-brand-red/30"
-          }`}
+          className={`fill-card-dark stroke-[1] transition-colors duration-300 ${isTransformActive || (!isMobile && isContentRevealed)
+            ? "stroke-brand-red/70"
+            : "stroke-border-theme group-hover:stroke-brand-red/30"
+            }`}
         />
       </svg>
 
@@ -184,24 +182,22 @@ function RectangularCardCell({ skill, idx, totalItems, iconObj, activeWaveStep, 
         y: isTransformActive ? -6 : 0,
       }}
       transition={animTransition}
-      className={`flex flex-col items-center justify-center w-[clamp(115px,38vw,180px)] h-[135px] min-[360px]:h-[165px] min-[500px]:h-[180px] p-3 bg-card-dark border rounded-xl shadow-sm transition-colors duration-300 cursor-default transform-gpu ${
-        isMobile
-          ? isTransformActive
-            ? "border-brand-red/70"
-            : "border-border-theme"
-          : activeHover
-            ? "border-brand-red/70 shadow-[0_4px_16px_rgba(229,9,20,0.12)]"
-            : "border-border-theme hover:border-brand-red/30"
-      }`}
+      className={`flex flex-col items-center justify-center w-[clamp(115px,38vw,180px)] h-[135px] min-[360px]:h-[165px] min-[500px]:h-[180px] p-3 bg-card-dark border rounded-xl shadow-sm transition-colors duration-300 cursor-default transform-gpu ${isMobile
+        ? isTransformActive
+          ? "border-brand-red/70"
+          : "border-border-theme"
+        : activeHover
+          ? "border-brand-red/70 shadow-[0_4px_16px_rgba(229,9,20,0.12)]"
+          : "border-border-theme hover:border-brand-red/30"
+        }`}
     >
       <div className="w-6 h-6 min-[360px]:w-8 min-[360px]:h-8 mb-2 flex items-center justify-center shrink-0">
         {iconSrc ? (
           <img
             src={iconSrc}
             alt={`${skill.name} Icon`}
-            className={`w-full h-full object-contain select-none transition-transform duration-300 ${
-              activeHover ? "scale-110" : ""
-            }`}
+            className={`w-full h-full object-contain select-none transition-transform duration-300 ${activeHover ? "scale-110" : ""
+              }`}
             loading="eager"
           />
         ) : (
@@ -268,7 +264,7 @@ function SkillCategoryBlock({
     <motion.div
       layout
       onViewportEnter={() => onSectionEnter(catIndex)}
-      viewport={{ once: true, amount: 0.25 }}
+      viewport={{ once: true, amount: 1 }}
       initial={{ opacity: 0, scale: 0.95 }}
       animate={{ opacity: 1, scale: 1 }}
       exit={{ opacity: 0, scale: 0.95 }}
@@ -416,11 +412,10 @@ function Skills({ data, icons = [] }) {
                   setCompletedCatSet(new Set());
                   setActiveWaveCatIndex(-1);
                 }}
-                className={`text-[10px] min-[360px]:text-xs font-semibold px-2.5 py-1.5 min-[360px]:px-4 min-[360px]:py-2 rounded-full cursor-pointer transition-all duration-300 border ${
-                  isActive
-                    ? "bg-brand-red text-white border-brand-red shadow-sm"
-                    : "bg-card-dark border-border-theme text-text-primary hover:border-brand-red/30"
-                }`}
+                className={`text-[10px] min-[360px]:text-xs font-semibold px-2.5 py-1.5 min-[360px]:px-4 min-[360px]:py-2 rounded-full cursor-pointer transition-all duration-300 border ${isActive
+                  ? "bg-brand-red text-white border-brand-red shadow-sm"
+                  : "bg-card-dark border-border-theme text-text-primary hover:border-brand-red/30"
+                  }`}
               >
                 {cat}
               </button>
